@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
      <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
     
@@ -27,17 +27,19 @@
     }
     </style>
     <script>
-       tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          anton: ['Anton', 'sans-serif'],
-          oswald: ['Oswald', 'sans-serif'],
+        tailwind.config = {
+      theme: {
+        extend: {
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          },
+          fontFamily: {
+            anton: ['Anton', 'sans-serif'],
+            oswald: ['Oswald', 'sans-serif'],
+          },
         },
-        // Outros temas personalizados (cores, etc) aqui
-      }
+      },
     }
-  }
         </script>
 </head>
 
@@ -64,14 +66,14 @@
 
     <hr class="h-[1px] max-w border-top-[1px] border-[#2b2b2b]">
 
-    <div class="w-full h-[450px] mt-[70px]  bg-radial from-black from-0% to-[#8500DD]">
+    <div class="w-full h-[450px] mt-[70px]  bg-gradient-radial from-black to-[#8500DD]">
 
         <div class="w-full h-full max-w-[1080px] mx-auto flex flex-row">
             <div class="flex flex-col">
                 <h1 class="mt-[68px] w-[554px] text-white text-7xl font-anton">SUA BEBIDA FAVORITA MUITO MAIS ESTILOSA</h1>
 
                 <button
-                    class="w-[150px] h-[40px] pl-[25px] mt-[50px] flex flex-row bg-white items-center rounded-4xl">VER
+                    class="w-[150px] h-[40px] pl-[25px] mt-[50px] flex flex-row bg-white items-center rounded-[30px]">VER
                     MAIS
                     <span class="material-symbols-outlined ml-[20px]">chevron_right</span></button>
             </div>
