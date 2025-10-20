@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Equipes da T3rrifier</title>
+
+     <style>
+    @font-face {
+      font-family: "Oswald";
+      src: url("./fontes/Oswald.ttf") format("truetype");
+      font-style: 400;
+    }
+    </style>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            oswald: ["Oswald", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-[#0f0f0f]">
+    <div class="max-w-[1080px] mx-auto flex">
+        <div class="mt-[90px] w-[1080px] flex">
+            <div class="w-full flex items-center">
+            <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+           <hr class="w-[1065px] h-[4px] bg-[#9500f9] z-5 border-[#9500f9]">
+            <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+            </div>
+            <h1 class="ml-[-620px] text-[50px] text-white z-10 font-oswald">EQUIPES</h1>
+        </div>
+        
+        
+    </div>
+</body>
+
+</html>
