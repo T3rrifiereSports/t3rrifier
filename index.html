@@ -28,20 +28,20 @@
 
     @font-face {
       font-family: "Quicksand";
-      src: url("/fonts/Quicksand-Regular.ttf") format("truetype");
+      src: url("./fontes/Quicksand-Regular.ttf") format("truetype");
       font-weight: 400;
       font-style: normal;
     }
 
     @font-face {
       font-family: "Quicksand";
-      src: url(./fontes/Quicksand-SemiBold.ttf) format("truetype");
+      src: url("./fontes/Quicksand-Bold.ttf") format("truetype");
       font-weight: 700;
     }
 
     @font-face {
       font-family: "Cormorant-Garamond";
-      src: url(./fontes/Cormorant-Garamond.txt) format("truetype");
+      src: url("./fontes/Cormorant-Garamond.txt") format("truetype");
       font-weight: 400;
     }
   </style>
@@ -104,13 +104,13 @@
         <a href="#" class="text-sm text-white hover:text-violet-600">INÍCIO</a>
       </li>
       <li>
-        <a href="#" class="text-sm text-white hover:text-violet-600">SOBRE</a>
+        <a href="sobrenos.html" class="text-sm text-white hover:text-violet-600">SOBRE</a>
       </li>
       <li>
         <a href="#" class="text-sm text-white hover:text-violet-600">PRODUTOS</a>
       </li>
       <li>
-        <a href="#" class="text-sm text-white hover:text-violet-600">EQUIPES</a>
+        <a href="equipes.html" class="text-sm text-white hover:text-violet-600">EQUIPES</a>
       </li>
       <li>
         <a href="#" class="text-sm text-white hover:text-violet-600">CRIADORES</a>
@@ -171,6 +171,130 @@
       <button class="indicator w-3 h-3 rounded-full bg-gray-400" onclick="goToSlide(1)"></button>
     </div>
   </div>
+
+  <div class="max-w-[1080px] mx-auto flex flex-col">
+    <!-- Linha + Título -->
+  <div class="mt-[90px] w-[1080px] flex items-center justify-center relative">
+    <div class="w-full flex items-center">
+      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+      <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
+      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+    </div>
+    <h1 class="absolute text-[48px] text-white font-oswald tracking-wider">
+      SOBRE NÓS
+    </h1>
+  </div><br>
+
+  <!-- Cards -->
+  <div class="mt-[60px] flex gap-[15px] justify-center items-start">
+
+    <!-- Card 1 -->
+    <div class="relative">
+      <div class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
+        <img src="./bandeiras/bandeiralivro.png" alt="">
+      </div>
+      <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-3">
+        <p class="text-white font-quicksand font-regular text-2xl text-left leading-relaxed">
+          No dia 06 de agosto de 2025, nasceu oficialmente o T3RRIFIER eSports.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="relative">
+      <div class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
+        <img src="./bandeiras/bandeirapessoa.png" alt="">
+      </div>
+      <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-3">
+        <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
+          A ideia surgiu da visão de Guilherme Basilio, Glaucyo Gabriel, Camila, Dafny, Bryan e Arthur.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="relative">
+      <div class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
+        <img src="./bandeiras/bandeirat3.png" alt="">
+      </div>
+      <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-12">
+        <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
+          O nome "T3RRIFIER" carrega o espírito do time: causar impacto, respeito e até um certo temor nos adversários.
+        </p>
+      </div>
+    </div>
+
+  </div>
+  </div>
+   <div class="max-w-[1080px] mx-auto flex flex-col">
+      <!-- Titulo -->
+      <div class="mt-[90px] w-[1080px] flex">
+        <div class="w-full flex items-center">
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+          <hr class="w-[1065px] h-[4px] bg-[#9500f9] z-5 border-[#9500f9]" />
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+        </div>
+        <h1 class="ml-[-600px] text-[50px] text-white z-10 font-oswald">
+          EQUIPES
+        </h1>
+      </div>
+
+      <!-- Jogos -->
+      <div class="mt-[43px] gap-[50px] flex grid grid-cols-3">
+        <div class="flex flex-col items-center">
+          <div
+            class="bg-[url('/equipes/fundofortnite.svg')] rounded-xl bg-cover bg-no-repeat bg-center w-[356px] h-[256px] flex items-center justify-center"
+          >
+            <img src="./equipes/iconefortnite.svg" alt="" />
+          </div>
+          <h1 class="text-white font-quicksand text-2xl mt-[20px]">FORTNITE</h1>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <div
+            class="bg-[url('/equipes/fundoclash.svg')] rounded-xl bg-cover bg-no-repeat bg-center w-[356px] h-[256px] flex items-center justify-center"
+          >
+            <img src="./equipes/iconeclash.svg" alt="" />
+          </div>
+          <h1 class="text-white font-quicksand text-2xl mt-[20px]">CLASH</h1>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <div
+            class="bg-[#202020] rounded-xl w-[356px] h-[256px] flex items-center justify-center"
+          >
+            <img src="./equipes/interrogação.svg" alt="" />
+          </div>
+          <h1 class="text-white font-quicksand text-2xl mt-[20px]">
+            EM BREVE...
+          </h1>
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-between mx-auto mt-[140px] w-[916px] text-white"
+      >
+        <div class="flex">
+          <h1 class="font-oswald text-8xl">4</h1>
+          <span class="font-quicksand text-2xl mt-[56px] ml-[7px]"
+            >JOGADORES</span
+          >
+        </div>
+        <div class="h-[81px] w-[4px] bg-[#545454]"></div>
+        <div class="flex">
+          <h1 class="font-oswald text-8xl">4</h1>
+          <span class="font-quicksand text-2xl mt-[56px] ml-[7px]"
+            >CAMPEONATOS</span
+          >
+        </div>
+        <div class="h-[81px] w-[4px] bg-[#545454]"></div>
+        <div class="flex">
+          <h1 class="font-oswald text-8xl">2</h1>
+          <span class="font-quicksand text-2xl mt-[56px] ml-[7px]"
+            >TÍTULOS</span
+          >
+        </div>
+      </div>
+    </div>
 
   <script>
     const slidesWrapper = document.getElementById('slidesWrapper');
