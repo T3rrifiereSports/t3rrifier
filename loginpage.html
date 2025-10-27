@@ -1,39 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Login Page</title>
-</head>
-<body class="bg-[#0f0f0f] flex flex-col"><br><br><br>
-    <div class="flex flex-col items-center gap-[116px] justify-center">
-<h1 class="text-5xl text-white font-oswald">FACA SEU LOGIN</h1>
-<div class="relative flex-col justify-center">
-  <div class="flex flex-col items-center justify-center gap-[45px]">
-  <input placeholder="Nome de usuario" class="w-[510px] border-[2px] focus:outline-none border-[#ffffff] pl-[20px] pla placeholder-opacity-60 placeholder-[#ffffff] font-barlow text-white text-xl h-[80px] bg-[#0f0f0f] rounded-xl flex" type="text">
-  <input placeholder="Insira seu email" class="w-[510px] border-[2px] focus:outline-none border-[#ffffff] pl-[20px] placeholder-opacity-60 placeholder-[#ffffff] font-barlow text-white text-xl h-[80px] bg-[#0f0f0f] rounded-xl flex" type="text">
-  <input id="senha" placeholder="Insira uma senha" class="w-[510px] border-[2px] focus:outline-none border-[#ffffff] pl-[20px] placeholder-opacity-60 placeholder-[#ffffff] font-barlow text-white text-xl h-[80px] bg-[#0f0f0f] rounded-xl flex" type="password">
-  <button type="button" id="toggle"
-          class="absolute right-3 top-[292px] -translate-y-1/2 text-gray-500 hover:text-purple-600">
-    <img id="eye" class="w-[25px] h-[25px] cursor-pointer transition-transform duration-300 hover:scale-105" src="inputeye.png" alt="">
-  </button>
-   <a href="t3.html" class="flex justify-center items-center w-[237px] rounded-xl h-[70px] font-barlow text-3xl text-white bg-[#9500f9]" href="">Corfirmar</a>
-  </div>
-  </div>
-  <div class="fixed flex justify-center items-center bottom-0 left-0 w-full bg-[#2b2b2b] w-full w-[1920px] h-[157px]">
-  
-      <img class="w-[410px] h-[110px]" src="t3logo.png" alt="">
-    
-  </div>
-</div>
-<script>
-  const input = document.getElementById('senha')
-  const toggle = document.getElementById('toggle')
 
-  toggle.addEventListener('click', () => {
-    input.type = input.type === 'password' ? 'text' : 'password'
-  })
-</script>
+  <style>
+    @font-face {
+      font-family: "Barlow";
+      src: url("./fontes/Barlow.ttf") format("truetype");
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "Oswald";
+      src: url("./fontes/Oswald-Regular.ttf") format("truetype");
+      font-style: 400;
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            oswald: ["Oswald", "sans-serif"],
+            barlow: ["Barlow", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+</head>
+
+<body class="bg-[#0f0f0f] flex flex-col">
+  <br /><br /><br />
+  <div class="flex flex-col items-center gap-[116px] justify-center">
+    <h1 class="text-5xl text-white font-oswald font-regular">FACA SEU LOGIN</h1>
+    <div class="relative flex-col justify-center">
+      <div class="flex flex-col items-center justify-center gap-[45px]">
+        <input placeholder="Nome de usuario"
+          class="w-[510px] border-[2px] focus:outline-none border-[#ffffff] pl-[20px] placeholder-opacity-60 placeholder-[#ffffff] font-barlow text-white text-xl h-[80px] bg-[#0f0f0f] rounded-3xl flex"
+          type="text" />
+
+        <input placeholder="Insira seu email"
+          class="w-[510px] border-[2px] focus:outline-none border-[#ffffff] pl-[20px] placeholder-opacity-60 placeholder-[#ffffff] font-barlow text-white text-xl h-[80px] bg-[#0f0f0f] rounded-3xl flex"
+          type="text" />
+
+        <input id="senha" placeholder="Insira uma senha"
+          class="w-[510px] border-[2px] focus:outline-none border-[#ffffff] pl-[20px] placeholder-opacity-60 placeholder-[#ffffff] font-barlow text-white text-xl h-[80px] bg-[#0f0f0f] rounded-3xl flex"
+          type="password" />
+
+        <button type="button" id="toggle"
+          class="absolute right-3 top-[292px] -translate-y-1/2 text-gray-500 hover:text-purple-600">
+          <img id="eye" class="w-[25px] h-[25px] cursor-pointer transition-transform duration-300 hover:scale-105"
+            src="inputeye.png" alt="" />
+
+        </button>
+        <a href="index.html"
+          class="flex justify-center items-center w-[237px] rounded-xl h-[70px] font-barlow text-3xl text-white bg-[#9500f9]"
+          href="">Corfirmar</a>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    const input = document.getElementById("senha");
+    const toggle = document.getElementById("toggle");
+
+    toggle.addEventListener("click", () => {
+      input.type = input.type === "password" ? "text" : "password";
+    });
+  </script>
 </body>
+<footer class="fixed flex justify-center items-center bottom-0 left-0 w-full bg-[#2b2b2b] w-full h-[157px]">
+  <img class="w-[410px] h-[110px]" src="t3logo.png" alt="" />
+</footer>
+
 </html>
