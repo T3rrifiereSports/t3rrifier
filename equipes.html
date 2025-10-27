@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Equipes da T3rrifier</title>
+
+    <style>
+      @font-face {
+        font-family: "Oswald";
+        src: url("./fontes/Oswald.ttf") format("truetype");
+        font-style: 400;
+      }
+      @font-face {
+        font-family: "Quicksand";
+        src: url("./fonts/Quicksand-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              oswald: ["Oswald", "sans-serif"],
+              quicksand: ["Quicksand", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-[#0f0f0f]">
+    <div class="max-w-[1080px] mx-auto flex flex-col">
+      <!-- Titulo -->
+      <div class="mt-[90px] w-[1080px] flex">
+        <div class="w-full flex items-center">
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+          <hr class="w-[1065px] h-[4px] bg-[#9500f9] z-5 border-[#9500f9]" />
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+        </div>
+        <h1 class="ml-[-600px] text-[50px] text-white z-10 font-oswald">
+          EQUIPES
+        </h1>
+      </div>
+
+      <!-- Jogos -->
+      <div class="mt-[43px] gap-[50px] flex grid grid-cols-3">
+        <div class="flex flex-col items-center">
+          <div
+            class="bg-[url('/equipes/fundofortnite.svg')] rounded-xl bg-cover bg-no-repeat bg-center w-[356px] h-[256px] flex items-center justify-center"
+          >
+            <img src="./equipes/iconefortnite.svg" alt="" />
+          </div>
+          <h1 class="text-white font-quicksand text-2xl mt-[20px]">FORTNITE</h1>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <div
+            class="bg-[url('/equipes/fundoclash.svg')] rounded-xl bg-cover bg-no-repeat bg-center w-[356px] h-[256px] flex items-center justify-center"
+          >
+            <img src="./equipes/iconeclash.svg" alt="" />
+          </div>
+          <h1 class="text-white font-quicksand text-2xl mt-[20px]">CLASH</h1>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <div
+            class="bg-[#202020] rounded-xl w-[356px] h-[256px] flex items-center justify-center"
+          >
+            <img src="./equipes/interrogação.svg" alt="" />
+          </div>
+          <h1 class="text-white font-quicksand text-2xl mt-[20px]">
+            EM BREVE...
+          </h1>
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-between mx-auto mt-[140px] w-[916px] text-white"
+      >
+        <div class="flex">
+          <h1 class="font-oswald text-8xl">4</h1>
+          <span class="font-quicksand text-2xl mt-[56px] ml-[7px]"
+            >JOGADORES</span
+          >
+        </div>
+        <div class="h-[81px] w-[4px] bg-[#545454]"></div>
+        <div class="flex">
+          <h1 class="font-oswald text-8xl">4</h1>
+          <span class="font-quicksand text-2xl mt-[56px] ml-[7px]"
+            >CAMPEONATOS</span
+          >
+        </div>
+        <div class="h-[81px] w-[4px] bg-[#545454]"></div>
+        <div class="flex">
+          <h1 class="font-oswald text-8xl">2</h1>
+          <span class="font-quicksand text-2xl mt-[56px] ml-[7px]"
+            >TÍTULOS</span
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
