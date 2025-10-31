@@ -55,8 +55,8 @@
         font-weight: 400;
       }
       @font-face {
-        font-family: "Barlow-Bold";
-        src: url("./fontes/Barlow-Bold.ttf") format("truetype");
+        font-family: "Barlow";
+        src: url("./fontes/Barlow.ttf") format("truetype");
         font-weight: 400;
       }
     </style>
@@ -72,20 +72,24 @@
               oswald: ["Oswald", "sans-serif"],
               quicksand: ["Quicksand", "sans-serif"],
               cormorant: ["Cormorant-Garamond", "serif"],
-              barlow: ["Barlow-Bold", "sans-serif"],
+              barlow: ["Barlow", "sans-serif"],
             },
           },
         },
       };
     </script>
     <style>
+      body {
+    overflow-x: hidden; /* Esconde scroll horizontal apenas do body */
+  }
       .slider-container {
         position: relative;
       }
 
       .slides-wrapper {
         display: flex;
-        transition: transform 0.6s ease-in-out;
+        transition: transform 0.5s ease-in-out;
+        width: 100%;
       }
 
       .slide {
@@ -113,11 +117,11 @@
   <body class="bg-[#0f0f0f] flex justify-center flex-col">
     <section id="comeco">
     <nav
-      class="w-full max-w-[1080px] mx-auto h-20 flex items-center justify-between"
+      class="w-full max-w-[1080px] md:justify-between mx-auto h-20 flex items-center justify-between"
     >
-      <img class="w-[225px]" src="t3logo.png" alt="" />
+      <img class="w-[225px] hidden md:flex" src="t3logo.png" alt="" />
 
-      <ul class="flex space-x-6 hidden md:flex">
+      <ul class="flex space-x-6 font-quicksand font-regular hidden md:flex">
         <li>
           <a href="#comeco" class="text-sm text-white hover:text-violet-600"
             >INÍCIO</a
@@ -137,11 +141,36 @@
           >
         </li>
         <li>
-          <a href="#" class="text-sm text-white hover:text-violet-600"
+          <a href="#criadores" class="text-sm text-white hover:text-violet-600"
             >CRIADORES</a
           >
         </li>
       </ul>
+
+      <div class="relative z-20 block md:hidden">
+  <button 
+    class="text-3xl text-white font-quicksand hover:text-[#9500f9] transition-colors duration-300 p-2" 
+    onclick="toggleMenu()"
+  >
+    <span id="hamburgerIcon">☰</span>
+  </button>
+  
+  <div 
+    class="absolute top-12 left-0 w-[200px] bg-[#0f0f0f] backdrop-blur-sm border-2 rounded-xl border-[#2b2b2b] text-white font-quicksand font-regular overflow-hidden transition-all duration-300" 
+    id="hamburguer" 
+    style="max-height: 0; opacity: 0; border-width: 0;"
+  >
+    <div class="flex flex-col p-4 gap-3">
+      <a href="#comeco" class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">INICIO</a>
+      <a href="#sobre" class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">SOBRE NÓS</a>
+      <a href="#products" class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">PRODUTOS</a>
+      <a href="#equipes" class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">EQUIPES</a>
+    </div>
+  </div>
+</div>
+     
+
+<img class="w-[225px] block md:hidden" src="t3logo.png" alt="" />
 
       <div class="flex space-x-5 items-center">
         <a href="#"
@@ -159,7 +188,7 @@
     <hr class="h-[1px] max-w border-top-[1px] border-[#2b2b2b]" />
 
     <div class="slider-container w-full h-[583px] mt-[70px]">
-      <div class="slides-wrapper" id="slidesWrapper">
+      <div class="slides-wrapper z-10" id="slidesWrapper">
         <!-- Slide 1 -->
         <div
           class="slide w-full h-[583px] bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.8)),radial-gradient(circle_at_center,black,#8500DD)] bg-cover bg-center"
@@ -182,7 +211,7 @@
             </div>
             <img
               class="ml-[-160px] mt-[-80px] z-5 w-[700px] h-[540px]"
-              src="./canecas/canecas.svg"
+              src="./produtos/canecas.svg"
               alt="Canecas"
             />
           </div>
@@ -213,7 +242,7 @@
             </div>
             <img
               class="mt-[-13px] z-5 w-[410px] h-[600px]"
-              src="camila.png"
+              src="./criadores/camila.png"
               alt="Manto dos Campeões"
             />
           </div>
@@ -232,6 +261,56 @@
         ></button>
       </div>
     </div>
+
+        <script>
+    const btns = document.querySelectorAll('.color-btn');
+    const productImg = document.getElementById('productImage');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // remove destaque anterior
+        btns.forEach(b => b.classList.remove('ring-2'));
+        // adiciona destaque no botão clicado
+        btn.classList.add('ring-2');
+        // troca a imagem
+        const newImage = btn.getAttribute('data-image');
+        productImg.src = newImage;
+      });
+    });
+  </script>
+
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById('hamburguer');
+  const icon = document.getElementById('hamburgerIcon');
+  
+  if (menu.style.maxHeight === '0px' || menu.style.maxHeight === '') {
+    menu.style.maxHeight = '300px';
+    menu.style.opacity = '1';
+    menu.style.borderWidth = '2px';
+    icon.textContent = '✕';
+  } else {
+    menu.style.maxHeight = '0';
+    menu.style.opacity = '0';
+    menu.style.borderWidth = '0';
+    icon.textContent = '☰';
+  }
+}
+
+// Fechar menu ao clicar fora
+document.addEventListener('click', function(event) {
+  const menu = document.getElementById('hamburguer');
+  const button = event.target.closest('button');
+  
+  if (!button && menu.style.maxHeight !== '0px') {
+    menu.style.maxHeight = '0';
+    menu.style.opacity = '0';
+    menu.style.borderWidth = '0';
+    document.getElementById('hamburgerIcon').textContent = '☰';
+  }
+});
+</script>
 
     <script>
       const slidesWrapper = document.getElementById("slidesWrapper");
@@ -317,6 +396,8 @@
       // Iniciar autoplay
       startAutoPlay();
     </script>
+
+
 </section>
 
 <section id="sobre" class="flex flex-col items-center justify-center">
@@ -326,18 +407,18 @@
       <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
       <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
     </div>
-    <h1 class="absolute text-[48px] text-white font-oswald tracking-wider">
+    <h1 class="absolute text-[48px] text-white font-oswald font-regular">
       SOBRE NÓS
     </h1>
   </div><br>
 
   <!-- Cards -->
-  <div class="mt-[60px] flex gap-[15px] justify-center items-start">
+  <div class="mt-[60px] flex flex-col sm:flex-col md:grid md:grid-cols-4 lg:flex lg:flex-row gap-[50px] md:gap-[15px] md:gap-y-[50px] justify-center items-start">
 
     <!-- Card 1 -->
-    <div class="relative">
+    <div class="relative md:col-span-2">
       <div class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
-        <img src="bandeira livro.png" alt="">
+        <img src="./bandeiras/bandeiralivro.png" alt="">
       </div>
       <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-3">
         <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
@@ -347,9 +428,9 @@
     </div>
 
     <!-- Card 2 -->
-    <div class="relative">
+    <div class="relative md:col-span-2">
       <div class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
-        <img src="bandeira pessoa.png" alt="">
+        <img src="./bandeiras/bandeirapessoa.png" alt="">
       </div>
       <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-3">
         <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
@@ -358,10 +439,10 @@
       </div>
     </div>
 
-    <!-- Card 3 -->
-    <div class="relative">
+    <!-- Card 3 - Centralizado -->
+    <div class="relative md:col-span-2 md:col-start-2">
       <div class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
-        <img src="bandeira t3.png" alt="">
+        <img src="./bandeiras/bandeirat3.png" alt="">
       </div>
       <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-12">
         <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
@@ -369,7 +450,7 @@
         </p>
       </div>
     </div>
-  </div>
+</div>
 </section><br><br><br>
 
   <!-- Produtos -->
@@ -383,7 +464,7 @@
       <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
       <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
     </div>
-    <h1 class="absolute text-[48px] text-white font-oswald tracking-wider">
+    <h1 class="absolute text-[48px] text-white font-oswald font-regular">
       PRODUTOS
     </h1>
   </div>
@@ -391,7 +472,7 @@
   <!-- Caneca preta -->
   <div class="absolute top-[230px] gap-[21px] flex items-center">
 <div class="flex-col flex items-center pt-10 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[24px]">
-  <a href=""><img id="productImagev" class="w-[180px] h-[170px]" src="canecaP.png" alt=""></a>
+  <a href=""><img id="productImagev" class="w-[180px] h-[170px]" src="./produtos/canecaP.png" alt=""></a>
   <div class="flex flex-col gap-[14px]">
   <p class="text-white text-xl font-quicksand">Caneca T3rrifier - BLACK</p>
   <div class="flex">
@@ -410,16 +491,16 @@
    <!-- Caneca branca -->
 </div>
 <div class="flex-col flex items-center pt-10 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[24px]">
-  <a href=""><img id="productImageo" class="w-[180px] h-[170px]" src="canecaB.png" alt=""></a>
+  <a href=""><img id="productImageo" class="w-[180px] h-[170px]" src="./produtos/canecaB.png" alt=""></a>
   <div class="flex flex-col gap-[14px]">
-  <p class="text-white text-xl font-quicksand">Caneca T3rrifier - WHITE</p>
+  <p class="text-white text-xl font-quicksand font-regular">Caneca T3rrifier - WHITE</p>
   <div class="flex">
   <button class="color-btp bg-[#ffffff] w-[14px] h-[14px] rounded-3xl"></button>
   </div>
   <div class="pt-6 flex items-center gap-[30px]">
-<p class="text-xl text-white font-quicksand">R$ 45,00</p>
+<p class="text-xl text-white font-quicksand font-regular">R$ 45,00</p>
 <div class="flex-col flex items-end">
-    <button id="addToCerto" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand rounded-xl hover:bg-[#9500f9] transition">
+    <button id="addToCerto" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] transition">
       Carrinho
     </button>
     </div>
@@ -430,17 +511,17 @@
  <!-- Camisa -->
 <div class="flex-col flex pt-7 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[10px]">
   <div class="items-center flex flex-col">
-  <a href=""><img id="productImagen" class="w-[195px] h-[195px]" src="camisa.png" alt=""></a>
+  <a href=""><img id="productImagen" class="w-[195px] h-[195px]" src="./produtos/camisa.png" alt=""></a>
   </div>
   <div class="flex pl-3 flex-col gap-[14px]">
-  <p class="text-white text-xl font-quicksand">Camisa T3rrifier</p>
+  <p class="text-white text-xl font-quicksand font-regular">Camisa T3rrifier</p>
   <div class="flex">
   <button class="color-btm bg-[#000000] w-[14px] h-[14px] rounded-3xl"></button>
   </div>
   <div class="pt-6 flex items-center gap-[30px]">
-<p class="text-xl text-white font-quicksand">R$ 75,00</p>
+<p class="text-xl text-white font-quicksand font-regular">R$ 75,00</p>
 <div class="flex-col flex items-end">
-    <button id="addToCarto" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand rounded-xl hover:bg-[#9500f9] transition">
+    <button id="addToCarto" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] transition">
       Carrinho
     </button>
     </div>
@@ -451,19 +532,19 @@
  <!-- moletons e ver carrinho -->
 <div class="flex-col flex pt-7 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[15px]">
   <div class="items-center flex flex-col">
-  <a href=""><img id="productImage" alt="Produto" class="w-[200px] h-[190px]" src="moletomB.png" alt=""></a>
+  <a href=""><img id="productImage" alt="Produto" class="w-[200px] h-[190px]" src="./produtos/moletomB.png" alt=""></a>
   </div>
   <div class="flex pl-3 flex-col gap-[14px]">
-  <p class="text-white text-xl font-quicksand">Moletom T3rrifier</p>
+  <p class="text-white text-xl font-quicksand font-regular">Moletom T3rrifier</p>
   <div class="flex gap-[15px]">
-  <button data-color="Branco" data-image="moletomB.png" class="color-btn bg-[#ffffff] w-[14px] h-[14px] rounded-3xl"></button>
-  <button  data-color="Preto" data-image="moletomP.png" class="color-btn bg-[#000000] w-[14px] h-[14px] rounded-3xl"></button>
-  <button data-color="Roxo" data-image="moletomR.png" class="color-btn bg-[#9500f9] w-[14px] h-[14px] rounded-3xl"></button>
+  <button data-color="Branco" data-image="./produtos/moletomB.png" class="color-btn bg-[#ffffff] w-[14px] h-[14px] rounded-3xl"></button>
+  <button  data-color="Preto" data-image="./produtos/moletomP.png" class="color-btn bg-[#000000] w-[14px] h-[14px] rounded-3xl"></button>
+  <button data-color="Roxo" data-image="./produtos/moletomR.png" class="color-btn bg-[#9500f9] w-[14px] h-[14px] rounded-3xl"></button>
   </div>
   <div class="pt-6 flex items-center gap-[30px]">
 <p class="text-xl text-white font-quicksand">R$ 90,00</p>
 <div class="flex-col flex items-end">
-    <button id="addToCart" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand rounded-xl hover:bg-[#9500f9] transition">
+    <button id="addToCart" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] transition">
       Carrinho
     </button>
     </div>
@@ -643,7 +724,7 @@
             >
               <img src="./equipes/iconefortnite.svg" alt="" />
             </div>
-            <h1 class="text-white font-quicksand text-2xl mt-[20px]">
+            <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">
               FORTNITE
             </h1>
           </div>
@@ -654,7 +735,7 @@
             >
               <img src="./equipes/iconeclash.svg" alt="" />
             </div>
-            <h1 class="text-white font-quicksand text-2xl mt-[20px]">CLASH</h1>
+            <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">CLASH</h1>
           </div>
 
           <div class="flex flex-col items-center">
@@ -663,7 +744,7 @@
             >
               <img src="./equipes/interrogação.svg" alt="" />
             </div>
-            <h1 class="text-white font-quicksand text-2xl mt-[20px]">
+            <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">
               EM BREVE...
             </h1>
           </div>
@@ -672,22 +753,22 @@
           class="flex items-center justify-between mx-auto mt-[140px] w-[916px] text-white"
         >
           <div class="flex">
-            <h1 class="font-oswald text-8xl">4</h1>
-            <span class="font-quicksand text-2xl mt-[56px] ml-[7px]"
+            <h1 class="font-oswald font-regular text-8xl">4</h1>
+            <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]"
               >JOGADORES</span
             >
           </div>
           <div class="h-[81px] w-[4px] bg-[#545454]"></div>
           <div class="flex">
-            <h1 class="font-oswald text-8xl">4</h1>
-            <span class="font-quicksand text-2xl mt-[56px] ml-[7px]"
+            <h1 class="font-oswald font-regular text-8xl">4</h1>
+            <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]"
               >CAMPEONATOS</span
             >
           </div>
           <div class="h-[81px] w-[4px] bg-[#545454]"></div>
           <div class="flex">
-            <h1 class="font-oswald text-8xl">2</h1>
-            <span class="font-quicksand text-2xl mt-[56px] ml-[7px]"
+            <h1 class="font-oswald font-regular text-8xl">2</h1>
+            <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]"
               >TÍTULOS</span
             >
           </div>
@@ -704,7 +785,7 @@
       <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
       <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
     </div>
-    <h1 class="absolute text-[48px] text-white font-oswald tracking-wider">
+    <h1 class="absolute text-[48px] text-white font-oswald font-regular">
       2025 CLIPES
     </h1>
   </div>
@@ -712,7 +793,7 @@
 
 <div class="w-full">
       <video class="w-full h-[650px]" controls autoplay muted loop>
-        <source src="./videos/1023.mp4" type="video/mp4">
+        <source src="clipe.mp4" type="video/mp4">
         Seu navegador não suporta vídeo.
       </video>
     </div>
@@ -859,7 +940,7 @@
       </div>
  </section>
 
-  <section id="cartas" class="flex items-center justify-center">
+  <section id="criadores" class="flex items-center justify-center">
     <div class="w-full max-w-7xl">
         
 <div class="flex flex-col items-center justify-center">
@@ -869,7 +950,7 @@
       <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
       <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
     </div>
-    <h1 class="absolute text-[48px] text-white font-oswald tracking-wider">
+    <h1 class="absolute text-[48px] text-white font-oswald font-regular">
       CRIADORES
     </h1>
   </div><br><br><br><br>
@@ -880,13 +961,13 @@
             <!-- Card 1 - Glaucio -->
             <div class="card-hover justify-center flex relative">
                
-                    <img src="Carta.png" alt="">
+                    <img src="./criadores/Carta.png" alt="">
                
                 <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="adm.png" alt="">
+                    <img class=" w-8 h-8" src="./criadores/identificações/adm.png" alt="">
                 </div>
                 <div class="opacity-90 hover:opacity-100 transition-opacity left-3 w-[186px] h-[196px] absolute top-3">
-                <img src="glaucyo.png">
+                <img src="./criadores/glaucyo.png">
                 </div>
                 <div class="absolute top-6 right-4 space-y-3">
                     <a href="https://www.instagram.com/gabrielvianna12?igsh=dzl5amoyZW54dzBs&utm_source=qr" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -897,24 +978,20 @@
                     </a>
                 </div>
                 <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-bold">GLAUCYO</p>
+                    <p class="text-white text-xl font-oswald font-bold">GLAUCYO</p>
                 </div>
             </div>
             
-                        
-                
-                
-
             <!-- Card 2 - Guilherme -->
            <div class="card-hover justify-center flex relative">
                 
-                    <img src="Carta.png" alt="">
+                    <img src="./criadores/Carta.png" alt="">
                 
                 <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="adm.png" alt="">
+                    <img class=" w-8 h-8" src="./criadores/identificações/adm.png" alt="">
                 </div>
                 <div class="opacity-90 hover:opacity-100 transition-opacity w-[186px] h-[196px] absolute top-3">
-                <img src="gui.png">
+                <img src="./criadores/gui.png">
                 </div>
                 <div class="absolute top-6 right-4 space-y-3">
                     <a href="https://www.instagram.com/021.ggzin?igsh=N3EzcXc4cjZkNXVo" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -925,20 +1002,20 @@
                     </a>
                 </div>
                 <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-bold">GUILHERME</p>
+                    <p class="text-white text-xl font-oswald font-bold">GUILHERME</p>
                 </div>
             </div>
 
             <!-- Card 3 - Bryan -->
            <div class="card-hover justify-center flex relative">
                 
-                    <img src="Carta.png" alt="">
+                    <img src="./criadores/Carta.png" alt="">
                 
                 <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="programador.png" alt="">
+                    <img class=" w-8 h-8" src="./criadores/identificações/programador.png" alt="">
                 </div>
                 <div class="opacity-90 hover:opacity-100 transition-opacity w-[186px] h-[196px] absolute top-3">
-                <img src="bryan.png">
+                <img src="./criadores/bryan.png">
                 </div>
                 <div class="absolute top-6 right-4 space-y-3">
                     <a href="#" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -949,20 +1026,20 @@
                     </a>
                 </div>
                 <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-bold">BRYAN</p>
+                    <p class="text-white text-xl font-regular font-bold">BRYAN</p>
                 </div>
             </div>
 
             <!-- Card 4 - Arthur -->
             <div class="card-hover justify-center flex relative">
                 
-                    <img src="Carta.png" alt="">
+                    <img src="./criadores/Carta.png" alt="">
                 
                 <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="telemarketing.png" alt="">
+                    <img class=" w-8 h-8" src="./criadores/identificações/telemarketing.png" alt="">
                 </div>
                 <div class="opacity-90 hover:opacity-100 transition-opacity w-[186px] h-[196px] absolute top-3">
-                <img src="arthur.png">
+                <img src="./criadores/arthur.png">
                 </div>
                 <div class="absolute top-6 right-4 space-y-3">
                     <a href="#" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -980,13 +1057,13 @@
             <!-- Card 5 - Camila -->
            <div class="card-hover justify-center flex relative">
                 
-                    <img src="Carta.png" alt="">
+                    <img src="./criadores/Carta.png" alt="">
                 
                 <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="programador.png" alt="">
+                    <img class=" w-8 h-8" src="./criadores/identificações/programador.png" alt="">
                 </div>
                 <div class="opacity-90 hover:opacity-100 transition-opacity w-[170px] h-[180px] absolute top-9">
-                <img src="camila.png">
+                <img src="./criadores/camila.png">
                 </div>
                 <div class="absolute top-6 right-4 space-y-3">
                     <a href="https://www.instagram.com/cami.sillv?igsh=aHBnajQ1Y2hvNGFi" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -997,20 +1074,20 @@
                     </a>
                 </div>
                 <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-bold">CAMILA</p>
+                    <p class="text-white text-xl font-oswald font-bold">CAMILA</p>
                 </div>
             </div>
 
             <!-- Card 6 - Dahy -->
             <div class="card-hover justify-center flex relative">
                 
-                    <img src="Carta.png" alt="">
+                    <img src="./criadores/Carta.png" alt="">
                 
                 <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="designer.png" alt="">
+                    <img class=" w-8 h-8" src="./criadores/identificações/designer.png" alt="">
                 </div>
                 <div class="opacity-90 hover:opacity-100 transition-opacity w-[170px] h-[180px] absolute top-9">
-                <img src="dafny.png">
+                <img src="./criadores/dafny.png">
                 </div>
                 <div class="absolute top-6 right-4 space-y-3">
                     <a href="#" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -1021,7 +1098,7 @@
                     </a>
                 </div>
                 <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-bold">DAFNY</p>
+                    <p class="text-white text-xl font-oswald font-bold">DAFNY</p>
                 </div>
             </div>
   </div>
@@ -1053,15 +1130,19 @@
     </style>
   </section>
 
+  </body>
+  
+  <br><br><br><br>
+
   <footer class="w-full" >
   <div class="relative flex items-center justify-center bg-[#2b2b2b] w-full h-[487px]" >
     <div class="absolute items-center flex top-[91px] gap-[125px]">
-<img class="w-[180px] h-[90px]" src="loide_mono.png" alt="">
-<img class="w-[180px] h-[180px]" src="attackshark.png" alt="">
-<img class="w-[180px] h-[180px]" src="Nike.png" alt="">
+<img class="w-[180px] h-[90px]" src="./patrocinadores/loide_mono.png" alt="">
+<img class="w-[180px] h-[180px]" src="./patrocinadores/attackshark.png" alt="">
+<img class="w-[180px] h-[180px]" src="./patrocinadores/Nike.png" alt="">
 </div>
 <div class="absolute top-[299px] flex items-center gap-[150px]">
-  <div class="font-quicksand text-white text-xs">
+  <div class="font-quicksand font-regular text-white text-xs">
   <p>© Copyright, T3rrifier, 2025 Todos os direitos reservados</p>
 </div>
   <img class="w-[500px] h-[130px]" src="t3logo.png" alt="">
@@ -1074,6 +1155,4 @@
   </div>
 </div>
 </footer>
-  </body><br><br><br><br>
-  
 </html>

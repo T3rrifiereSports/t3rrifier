@@ -1,71 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Carrinho de Compras</title>
-</head>
-<body class="bg-[#0f0f0f] flex flex-col items-center justify-center min-h-screen text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Carrinho de Compras</title>
+  </head>
+  <body
+    class="bg-[#0f0f0f] flex flex-col items-center justify-center min-h-screen text-white"
+  >
+    <div
+      class="bg-[#0f0f0f] border-[#3b3b3b] border-2 p-6 rounded-2xl w-96 text-center"
+    >
+      <h2 class="font-semibold text-xl mb-4">🛒 Seu Carrinho</h2>
 
-  <div class="bg-[#0f0f0f] border-[#3b3b3b] border-2 p-6 rounded-2xl w-96 text-center">
-    <h2 class="font-semibold text-xl mb-4">🛒 Seu Carrinho</h2>
+      <ul id="cartItems" class="text-gray-300 text-sm mb-4 space-y-2">
+        <li class="text-gray-500 italic">Carregando...</li>
+      </ul>
 
-    <ul id="cartItems" class="text-gray-300 text-sm mb-4 space-y-2">
-      <li class="text-gray-500 italic">Carregando...</li>
-    </ul>
+      <p class="font-semibold text-[#ffffff] mb-4">
+        Total: R$ <span id="cartTotal"> 0,00</span>
+      </p>
 
-    <p class="font-semibold text-[#ffffff] mb-4">Total: R$ <span id="cartTotal"> 0,00</span></p>
+      <button
+        id="clearCart"
+        class="bg-purple-700 px-4 py-2 rounded-xl font-semibold"
+      >
+        Esvaziar Carrinho
+      </button>
+      <a
+        href="index.html"
+        class="block mt-4 text-[#3b3b3b] underline hover:text-purple-500"
+        >← Voltar à loja</a
+      >
+    </div>
 
-    <button id="clearCart" class="bg-purple-700 px-4 py-2 rounded-xl font-semibold">Esvaziar Carrinho</button>
-    <a href="t3.html" class="block mt-4 text-[#3b3b3b] underline hover:text-purple-500">← Voltar à loja</a>
-  </div>
+    <script>
+      const cartItemsList = document.getElementById("cartItems");
+      const cartTotalEl = document.getElementById("cartTotal");
+      const clearCartBtn = document.getElementById("clearCart");
 
-  <script>
-    const cartItemsList = document.getElementById('cartItems');
-    const cartTotalEl = document.getElementById('cartTotal');
-    const clearCartBtn = document.getElementById('clearCart');
+      // Carregar carrinho
+      function renderCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cartItemsList.innerHTML = "";
 
-    // Carregar carrinho
-    function renderCart() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cartItemsList.innerHTML = "";
-
-      if (cart.length === 0) {
-        cartItemsList.innerHTML = '<li class="text-gray-500 italic">Carrinho vazio...</li>';
-      } else {
-        cart.forEach((item, index) => {
-          const li = document.createElement('li');
-          li.innerHTML = `
+        if (cart.length === 0) {
+          cartItemsList.innerHTML =
+            '<li class="text-gray-500 italic">Carrinho vazio...</li>';
+        } else {
+          cart.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
             ${item.name} - <span class="text-purple-600">${item.color}</span> 
             <span class="text-gray-400">R$ ${item.price.toFixed(2)}</span>
             <button onclick="removeItem(${index})" class="ml-2 text-red-400 hover:text-red-300">✖</button>
           `;
-          cartItemsList.appendChild(li);
-        });
+            cartItemsList.appendChild(li);
+          });
+        }
+
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        cartTotalEl.textContent = total.toFixed(2);
       }
 
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      cartTotalEl.textContent = total.toFixed(2);
-    }
+      // Remover item individual
+      function removeItem(index) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
 
-    // Remover item individual
-    function removeItem(index) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
+      // Esvaziar carrinho
+      clearCartBtn.addEventListener("click", () => {
+        localStorage.removeItem("cart");
+        renderCart();
+      });
+
+      window.removeItem = removeItem;
       renderCart();
-    }
-
-    // Esvaziar carrinho
-    clearCartBtn.addEventListener('click', () => {
-      localStorage.removeItem('cart');
-      renderCart();
-    });
-
-    window.removeItem = removeItem;
-    renderCart();
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>
