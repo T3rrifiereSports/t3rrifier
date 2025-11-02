@@ -114,7 +114,7 @@
     </style>
   </head>
 
-  <body class="bg-[#0f0f0f] flex justify-center flex-col">
+  <body class="bg-[#0f0f0f] items-center flex justify-center flex-col">
     <section id="comeco">
     <nav
       class="w-full max-w-[1080px] md:justify-between mx-auto h-20 flex items-center justify-between"
@@ -187,78 +187,50 @@
 
     <hr class="h-[1px] max-w border-top-[1px] border-[#2b2b2b]" />
 
-    <div class="slider-container w-full h-[583px] mt-[70px]">
-      <div class="slides-wrapper z-10" id="slidesWrapper">
+    <div class="slider-container w-full h-[400px] md:h-[583px] mt-[40px] md:mt-[70px]">
+      <div class="slides-wrapper" id="slidesWrapper">
         <!-- Slide 1 -->
-        <div
-          class="slide w-full h-[583px] bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.8)),radial-gradient(circle_at_center,black,#8500DD)] bg-cover bg-center"
-        >
-          <div class="h-full max-w-[1080px] mx-auto flex flex-row">
-            <div class="h-[393px] w-[544px] flex flex-col">
-              <h1
-                class="mt-[68px] z-10 text-white text-[85px] leading-[98px] font-anton"
-              >
+        <div class="slide w-full h-[400px] md:h-[583px] bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.8)),radial-gradient(circle_at_center,black,#8500DD)] bg-cover bg-center">
+          <div class="h-full max-w-[1080px] mx-auto flex flex-col md:flex-row justify-center">
+            <div class="h-auto md:h-[393px] w-full md:w-[544px] flex flex-col text-center md:text-left">
+              <h1 class="md:mt-[68px] z-10 text-white text-[40px] md:text-[85px] leading-[48px] md:leading-[98px] font-anton">
                 SUA BEBIDA FAVORITA MUITO MAIS ESTILOSA
               </h1>
 
-              <a href="#products" class="w-[192px] h-[50px] pl-[44px] py-[20px] mt-[56px] font-quicksand font-bold text-xl flex flex-row bg-white items-center rounded-[30px]"
-              >
+              <a href="#products" class="w-[180px] md:w-[192px] h-[50px] mx-auto md:mx-0 pl-[35px] md:pl-[44px] md:py-[20px] mt-[30px] md:mt-[56px] font-quicksand font-bold text-lg md:text-xl flex flex-row bg-white items-center rounded-[30px]">
                 VER MAIS
-                <span class="material-symbols-outlined ml-[27px]"
-                  >chevron_right</span
-                >
+                <span class="material-symbols-outlined ml-[20px] md:ml-[27px]">chevron_right</span>
               </a>
             </div>
-            <img
-              class="ml-[-160px] mt-[-80px] z-5 w-[700px] h-[540px]"
-              src="./produtos/canecas.svg"
-              alt="Canecas"
-            />
+            <img class="hidden md:block ml-[-160px] mb-[125px] mt-[-80px] z-5 w-[700px] h-[540px]" src="./produtos/canecas.svg" alt="Canecas" />
           </div>
         </div>
 
         <!-- Slide 2 -->
-        <div
-          class="slide w-full h-[583px] bg-[radial-gradient(circle_at_top_left,_#A991E2,_#231C32,_black)]"
-        >
-          <div class="h-full max-w-[1080px] mx-auto flex flex-row">
-            <div class="h-[393px] w-[544px] flex flex-col">
-              <h1
-                class="mt-[68px] z-10 text-white text-[115px] leading-[98px] font-anton"
-              >
+        <div class="slide w-full h-[400px] md:h-[583px] bg-[radial-gradient(circle_at_top_left,_#A991E2,_#231C32,_black)]">
+          <div class="h-full max-w-[1080px] mx-auto flex flex-col md:flex-row md:justify-start justify-center">
+            <div class="h-auto md:h-[393px] md:w-[544px] w-full flex flex-col text-center md:text-left">
+              <h1 class="md:mt-[68px] z-10 text-white text-[60px] md:text-[115px] leading-[60px] md:leading-[98px] font-anton">
                 MANTO DOS
               </h1>
-              <h1 class="z-10 text-white text-[115px] font-cormorant">
+              <h1 class="z-10 text-white text-[60px] md:text-[115px] font-cormorant">
                 CAMPEÕES
               </h1>
 
-              <a href="#products" class="w-[192px] h-[50px] pl-[44px] py-[20px] mt-[90px] font-quicksand font-bold text-xl flex flex-row bg-white items-center rounded-[30px]"
-              >
+              <a href="#products" class="w-[180px] md:w-[192px] h-[50px] mx-auto md:mx-0 pl-[35px] md:pl-[44px] py-[20px] mt-[40px] md:mt-[90px] font-quicksand font-bold text-lg md:text-xl flex flex-row bg-white items-center rounded-[30px]">
                 VER MAIS
-                <span class="material-symbols-outlined ml-[27px]"
-                  >chevron_right</span
-                >
+                <span class="material-symbols-outlined ml-[20px] md:ml-[27px]">chevron_right</span>
               </a>
             </div>
-            <img
-              class="mt-[-13px] z-5 w-[410px] h-[600px]"
-              src="./criadores/camila.png"
-              alt="Manto dos Campeões"
-            />
+            <img class="hidden md:block md:mt-[-13px] z-5 w-[410px] h-[600px]" src="./criadores/camila.png" alt="Manto dos Campeões" />
           </div>
         </div>
       </div>
 
       <!-- Indicadores -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
-        <button
-          class="indicator w-3 h-3 rounded-full bg-white active"
-          onclick="goToSlide(0)"
-        ></button>
-        <button
-          class="indicator w-3 h-3 rounded-full bg-gray-400"
-          onclick="goToSlide(1)"
-        ></button>
+      <div class="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
+        <button class="indicator w-3 h-3 rounded-full bg-white active" onclick="goToSlide(0)"></button>
+        <button class="indicator w-3 h-3 rounded-full bg-gray-400" onclick="goToSlide(1)"></button>
       </div>
     </div>
 
@@ -407,7 +379,7 @@ document.addEventListener('click', function(event) {
       <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
       <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
     </div>
-    <h1 class="absolute text-[48px] text-white font-oswald font-regular">
+    <h1 class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[50px] text-white z-10 font-oswald font-regular">
       SOBRE NÓS
     </h1>
   </div><br>
@@ -701,26 +673,28 @@ document.addEventListener('click', function(event) {
 
 <!-- equipes -->
  <section id="equipes">
- <div class="max-w-[1080px] mx-auto flex flex-col">
+ <div class="max-w-[1080px] justify-center items-center mx-auto flex flex-col">
         <!-- Titulo -->
-        <div class="mt-[90px] w-[1080px] flex">
-          <div class="w-full flex items-center">
+        <div class="mt-[90px] mx-auto items-center justify-center w-[1080px] flex">
+          <div class="w-full w-[500px] sm:w-[500px] md:w-[700px] lg:w-[1080px] flex items-center">
             <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
             <hr class="w-[1065px] h-[4px] bg-[#9500f9] z-5 border-[#9500f9]" />
             <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
           </div>
           <h1
-            class="ml-[-600px] text-[50px] text-white font-regular z-10 font-oswald"
-          >
+            class="absolute text-[40px] md:text-[50px] text-white z-10 font-oswald font-regular ">
             EQUIPES
           </h1>
         </div>
 
         <!-- Jogos -->
-        <div class="mt-[43px] gap-[50px] flex grid grid-cols-3">
+        
+         <div>
+           <div class="mt-[43px] gap-[40px] flex flex-col sm:flex-col md:grid md:grid-cols-4 lg:flex lg:flex-row">
+            <div class="relative md:col-span-2">
           <div class="flex flex-col items-center">
             <div
-              class="bg-[url('./equipes/fundofortnite.svg')] rounded-xl bg-cover bg-no-repeat bg-center w-[356px] h-[256px] flex items-center justify-center"
+              class="bg-[url('./equipes/fundofortnite.svg')] rounded-xl bg-no-repeat bg-center w-[340px] h-[256px] flex items-center justify-center"
             >
               <img src="./equipes/iconefortnite.svg" alt="" />
             </div>
@@ -728,19 +702,23 @@ document.addEventListener('click', function(event) {
               FORTNITE
             </h1>
           </div>
+        </div>
 
-          <div class="flex flex-col items-center">
+          <div class="relative md:col-span-2">
+            <div class="flex flex-col items-center">
             <div
-              class="bg-[url('./equipes/fundoclash.svg')] rounded-xl bg-cover bg-no-repeat bg-center w-[356px] h-[256px] flex items-center justify-center"
+              class="bg-[url('./equipes/fundoclash.svg')] rounded-xl bg-no-repeat bg-center w-[340px] h-[256px] flex items-center justify-center"
             >
               <img src="./equipes/iconeclash.svg" alt="" />
             </div>
             <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">CLASH</h1>
           </div>
+          </div>
 
-          <div class="flex flex-col items-center">
+          <div class="relative md:col-span-2 md:col-start-2">
+            <div class="flex flex-col items-center">
             <div
-              class="bg-[#202020] rounded-xl w-[356px] h-[256px] flex items-center justify-center"
+              class="bg-[#202020] rounded-xl w-[335px] h-[256px] flex items-center justify-center"
             >
               <img src="./equipes/interrogação.svg" alt="" />
             </div>
@@ -749,29 +727,40 @@ document.addEventListener('click', function(event) {
             </h1>
           </div>
         </div>
-        <div
-          class="flex items-center justify-between mx-auto mt-[140px] w-[916px] text-white"
+          </div>
+         </div>
+
+        <div>
+          <div
+          class="flex items-center justify-between mx-auto flex-col md:w-[700px] md:flex md:flex-row mt-[140px] w-[916px] text-white"
         >
-          <div class="flex">
+          <div class="">
+            <div class="flex">
             <h1 class="font-oswald font-regular text-8xl">4</h1>
             <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]"
               >JOGADORES</span
             >
           </div>
-          <div class="h-[81px] w-[4px] bg-[#545454]"></div>
-          <div class="flex">
+          </div>
+          <div class="md:h-[81px] md:w-[4px] bg-[#545454] md:flex-col mt-[20px] w-[200px] h-[4px]"></div>
+          <div class="">
+            <div class="flex mt-[10px] md:flex">
             <h1 class="font-oswald font-regular text-8xl">4</h1>
             <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]"
               >CAMPEONATOS</span
             >
           </div>
-          <div class="h-[81px] w-[4px] bg-[#545454]"></div>
-          <div class="flex">
+          </div>
+          <div class="bg-[#545454] w-[200px] h-[4px] mt-[20px] md:h-[81px] md:w-[4px] "></div>
+          <div class="">
+            <div class="flex mt-[10px] md:flex">
             <h1 class="font-oswald font-regular text-8xl">2</h1>
             <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]"
               >TÍTULOS</span
             >
           </div>
+          </div>
+        </div>
         </div>
       </div>
 
@@ -785,7 +774,7 @@ document.addEventListener('click', function(event) {
       <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
       <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
     </div>
-    <h1 class="absolute text-[48px] text-white font-oswald font-regular">
+    <h1 class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[50px] text-white z-10 font-oswald font-regular">
       2025 CLIPES
     </h1>
   </div>
@@ -950,7 +939,7 @@ document.addEventListener('click', function(event) {
       <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
       <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
     </div>
-    <h1 class="absolute text-[48px] text-white font-oswald font-regular">
+    <h1 class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[48px] text-white z-10 font-oswald font-regular">
       CRIADORES
     </h1>
   </div><br><br><br><br>
