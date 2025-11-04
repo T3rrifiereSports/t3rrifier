@@ -1,231 +1,337 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=chevron_right"
-    />
-    <title>T3rrifier eSports</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
 
-    <style>
-      @font-face {
-        font-family: "Oswald";
-        src: url("./fontes/Oswald-Regular.ttf") format("truetype");
-        font-style: 400;
-      }
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=chevron_right" />
+  <title>T3rrifier eSports</title>
 
-      @font-face {
-        font-family: "Oswald";
-        src: url("./fontes/Oswald-Bold.ttf") format("truetype");
-        font-style: 700;
-      }
+  <style>
+    @font-face {
+      font-family: "Oswald";
+      src: url("./fontes/Oswald-Regular.ttf") format("truetype");
+      font-style: 400;
+    }
 
-      @font-face {
-        font-family: "Anton";
-        src: url("./fontes/Anton.ttf") format("truetype");
-        font-weight: 400;
-        font-style: normal;
-      }
+    @font-face {
+      font-family: "Oswald";
+      src: url("./fontes/Oswald-Bold.ttf") format("truetype");
+      font-style: 700;
+    }
 
-      @font-face {
-        font-family: "Quicksand";
-        src: url("./fontes/Quicksand-Regular.ttf") format("truetype");
-        font-weight: 400;
-        font-style: normal;
-      }
+    @font-face {
+      font-family: "Anton";
+      src: url("./fontes/Anton.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
 
-      @font-face {
-        font-family: "Quicksand";
-        src: url("./fontes/Quicksand-Bold.ttf") format("truetype");
-        font-weight: 700;
-      }
+    @font-face {
+      font-family: "Quicksand";
+      src: url("./fontes/Quicksand-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
 
-      @font-face {
-        font-family: "Cormorant-Garamond";
-        src: url("./fontes/Cormorant-Garamond.txt") format("truetype");
-        font-weight: 400;
-      }
-      @font-face {
-        font-family: "Barlow";
-        src: url("./fontes/Barlow.ttf") format("truetype");
-        font-weight: 400;
-      }
-    </style>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            backgroundImage: {
-              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-            },
-            fontFamily: {
-              anton: ["Anton", "sans-serif"],
-              oswald: ["Oswald", "sans-serif"],
-              quicksand: ["Quicksand", "sans-serif"],
-              cormorant: ["Cormorant-Garamond", "serif"],
-              barlow: ["Barlow", "sans-serif"],
-            },
+    @font-face {
+      font-family: "Quicksand";
+      src: url("./fontes/Quicksand-Bold.ttf") format("truetype");
+      font-weight: 700;
+    }
+
+    @font-face {
+      font-family: "Cormorant-Garamond";
+      src: url("./fontes/Cormorant-Garamond.ttf") format("truetype");
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "Barlow";
+      src: url("./fontes/Barlow.ttf") format("truetype");
+      font-weight: 400;
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          backgroundImage: {
+            "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+          },
+          fontFamily: {
+            anton: ["Anton", "sans-serif"],
+            oswald: ["Oswald", "sans-serif"],
+            quicksand: ["Quicksand", "sans-serif"],
+            cormorant: ["Cormorant-Garamond", "serif"],
+            barlow: ["Barlow", "sans-serif"],
           },
         },
-      };
-    </script>
-    <style>
-      body {
-    overflow-x: hidden; /* Esconde scroll horizontal apenas do body */
-  }
-      .slider-container {
-        position: relative;
+      },
+    };
+  </script>
+
+  <style>
+    /* Carrossel Mobile */
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+
+    .carousel-nav {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-nav:hover {
+      background: rgba(149, 0, 249, 0.8);
+    }
+
+    /* Desktop - Layout Original */
+    @media (min-width: 768px) {
+
+      .desktop-grid {
+        display: grid;
       }
 
-      .slides-wrapper {
+      .carousel-item {
+        min-width: auto;
+
+      }
+    }
+
+    .slider-container {
+      position: relative;
+     overflow: hidden;
+    }
+
+    .slides-wrapper {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+
+    .indicator {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .indicator:hover {
+      transform: scale(1.2);
+    }
+
+    .indicator.active {
+      background-color: white !important;
+      width: 32px;
+      border-radius: 6px;
+    }
+
+    /* Menu Mobile */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(15, 15, 15, 0.98);
+      z-index: 1000;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
         display: flex;
-        transition: transform 0.5s ease-in-out;
-        width: 100%;
       }
+    }
+        .card-hover {
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-      .slide {
-        min-width: 100%;
-        flex-shrink: 0;
-      }
+        .card-hover:hover {
+          transform: translateY(-20px) scale(1.05);
+        }
 
-      .indicator {
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
+        .social-icon {
+          transition: all 0.3s ease;
+        }
 
-      .indicator:hover {
-        transform: scale(1.2);
-      }
+        .social-icon:hover {
+          transform: scale(1.2);
+          filter: brightness(1.5);
+        }
 
-      .indicator.active {
-        background-color: white !important;
-        width: 32px;
-        border-radius: 6px;
-      }
-    </style>
-  </head>
+        .title-line {
+          background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+          height: 2px;
+        }
+      
+  </style>
+</head>
 
-  <body class="bg-[#0f0f0f] items-center flex justify-center flex-col">
-    <section id="comeco">
-    <nav
-      class="w-full max-w-[1080px] md:justify-between mx-auto h-20 flex items-center justify-between"
-    >
+<body class="bg-[#0f0f0f] flex justify-center flex-col ">
+  <section id="comeco">
+    <nav class="w-full max-w-[1080px] md:justify-between mx-auto h-20 flex items-center justify-between px-4 md:px-0">
       <img class="w-[225px] hidden md:flex" src="t3logo.png" alt="" />
 
-      <ul class="flex space-x-6 font-quicksand font-regular hidden md:flex">
+      <ul class="hidden md:flex space-x-6 font-quicksand font-regular">
         <li>
-          <a href="#comeco" class="text-sm text-white hover:text-violet-600"
-            >INÍCIO</a
-          >
+          <a href="#comeco" class="text-md text-white hover:text-violet-600">INÍCIO</a>
         </li>
         <li>
-          <a href="#sobre" class="text-sm text-white hover:text-violet-600">SOBRE</a>
+          <a href="#sobre" class="text-md text-white hover:text-violet-600">SOBRE</a>
         </li>
         <li>
-          <a href="#products" class="text-sm text-white hover:text-violet-600"
-            >PRODUTOS</a
-          >
+          <a href="#products" class="text-md text-white hover:text-violet-600">PRODUTOS</a>
         </li>
         <li>
-          <a href="#equipes" class="text-sm text-white hover:text-violet-600"
-            >EQUIPES</a
-          >
+          <a href="#equipes" class="text-md text-white hover:text-violet-600">EQUIPES</a>
         </li>
         <li>
-          <a href="#criadores" class="text-sm text-white hover:text-violet-600"
-            >CRIADORES</a
-          >
+          <a href="#criadores" class="text-md text-white hover:text-violet-600">CRIADORES</a>
         </li>
       </ul>
 
-      <div class="relative z-20 block md:hidden">
-  <button 
-    class="text-3xl text-white font-quicksand hover:text-[#9500f9] transition-colors duration-300 p-2" 
-    onclick="toggleMenu()"
-  >
-    <span id="hamburgerIcon">☰</span>
-  </button>
-  
-  <div 
-    class="absolute top-12 left-0 w-[200px] bg-[#0f0f0f] backdrop-blur-sm border-2 rounded-xl border-[#2b2b2b] text-white font-quicksand font-regular overflow-hidden transition-all duration-300" 
-    id="hamburguer" 
-    style="max-height: 0; opacity: 0; border-width: 0;"
-  >
-    <div class="flex flex-col p-4 gap-3">
-      <a href="#comeco" class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">INICIO</a>
-      <a href="#sobre" class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">SOBRE NÓS</a>
-      <a href="#products" class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">PRODUTOS</a>
-      <a href="#equipes" class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">EQUIPES</a>
-    </div>
-  </div>
-</div>
-     
 
-<img class="w-[225px] block md:hidden" src="t3logo.png" alt="" />
+
+      <div class="relative z-20 block md:hidden">
+        <button class="text-3xl text-white font-quicksand hover:text-[#9500f9] transition-colors duration-300 p-2"
+          onclick="toggleMenu()">
+          <span id="hamburger">☰</span>
+        </button>
+
+        <div
+          class="absolute top-12 left-0 w-[200px] bg-[#0f0f0f] backdrop-blur-sm border-2 rounded-xl border-[#2b2b2b] text-white font-quicksand font-regular overflow-hidden transition-all duration-300"
+          id="hamburguer" style="max-height: 0; opacity: 0; border-width: 0;">
+          <div class="flex flex-col p-4 gap-3">
+            <a href="#comeco"
+              class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">INICIO</a>
+            <a href="#sobre"
+              class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">SOBRE NÓS</a>
+            <a href="#products"
+              class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">PRODUTOS</a>
+            <a href="#equipes"
+              class="py-2 px-3 rounded-lg hover:text-[#9500f9] hover:pl-5 transition-all duration-300">EQUIPES</a>
+          </div>
+        </div>
+      </div>
+
+
+      <img class="w-[180px] block md:hidden" src="t3logo.png" alt="" />
 
       <div class="flex space-x-5 items-center">
-        <a href="#"
-          ><img class="w-[23px] h-[23px]" src="./imgheader/lupa.svg" alt=""
-        /></a>
-        <a href="carrinho.html"
-          ><img class="w-[22px] h-[27px]" src="./imgheader/compra.svg" alt=""
-        /></a>
-        <a href="loginpage.html"
-          ><img class="w-[30px] h-[30px]" src="./imgheader/person.svg" alt=""
-        /></a>
-      </div>
+        <a href="#"><img class="w-[23px] h-[23px]" src="./imgheader/lupa.svg" alt="" /></a>
+        <a href="carrinho.html"><img class="w-[22px] h-[27px]" src="./imgheader/compra.svg" alt="" /></a>
+        <a href="loginpage.html"><img class="w-[30px] h-[30px]" src="./imgheader/person.svg" alt="" /></a>
     </nav>
 
-    <hr class="h-[1px] max-w border-top-[1px] border-[#2b2b2b]" />
+    <!-- Menu Mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#comeco" class="text-2xl text-white hover:text-violet-600 font-quicksand">INÍCIO</a>
+      <a href="#sobre" class="text-2xl text-white hover:text-violet-600 font-quicksand">SOBRE</a>
+      <a href="#products" class="text-2xl text-white hover:text-violet-600 font-quicksand">PRODUTOS</a>
+      <a href="#equipes" class="text-2xl text-white hover:text-violet-600 font-quicksand">EQUIPES</a>
+      <a href="#criadores" class="text-2xl text-white hover:text-violet-600 font-quicksand">CRIADORES</a>
+    </div>
 
-    <div class="slider-container w-full h-[400px] md:h-[583px] mt-[40px] md:mt-[70px]">
+    <div class="slider-container">
+      <hr class="h-[1px] max-w border-top-[1px] border-[#2b2b2b]" />
+
+    <div class=" w-full h-[400px] md:h-[583px] mt-[40px] md:mt-[70px]">
       <div class="slides-wrapper" id="slidesWrapper">
         <!-- Slide 1 -->
-        <div class="slide w-full h-[400px] md:h-[583px] bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.8)),radial-gradient(circle_at_center,black,#8500DD)] bg-cover bg-center">
+        <div
+          class="slide w-full h-[400px] md:h-[583px] bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.8)),radial-gradient(circle_at_center,black,#8500DD)] bg-cover bg-center">
           <div class="h-full max-w-[1080px] mx-auto flex flex-col md:flex-row justify-center">
             <div class="h-auto md:h-[393px] w-full md:w-[544px] flex flex-col text-center md:text-left">
-              <h1 class="md:mt-[68px] z-10 text-white text-[40px] md:text-[85px] leading-[48px] md:leading-[98px] font-anton">
+              <h1
+                class="md:mt-[68px] z-10 text-white text-[40px] md:text-[85px] leading-[48px] md:leading-[98px] font-anton">
                 SUA BEBIDA FAVORITA MUITO MAIS ESTILOSA
               </h1>
 
-              <a href="#products" class="w-[180px] md:w-[192px] h-[50px] mx-auto md:mx-0 pl-[35px] md:pl-[44px] md:py-[20px] mt-[30px] md:mt-[56px] font-quicksand font-bold text-lg md:text-xl flex flex-row bg-white items-center rounded-[30px]">
+              <a href="#products"
+                class="w-[180px] md:w-[192px] h-[50px] mx-auto md:mx-0 pl-[35px] md:pl-[44px] md:py-[20px] mt-[30px] md:mt-[56px] font-quicksand font-bold text-lg md:text-xl flex flex-row bg-white items-center rounded-[30px]">
                 VER MAIS
                 <span class="material-symbols-outlined ml-[20px] md:ml-[27px]">chevron_right</span>
               </a>
             </div>
-            <img class="hidden md:block ml-[-160px] mb-[125px] mt-[-80px] z-5 w-[700px] h-[540px]" src="./produtos/canecas.svg" alt="Canecas" />
+            <img class="hidden md:block ml-[-160px] mb-[125px] mt-[-80px] z-5 w-[700px] h-[540px]"
+              src="./produtos/canecas.svg" alt="Canecas" />
           </div>
         </div>
 
         <!-- Slide 2 -->
-        <div class="slide w-full h-[400px] md:h-[583px] bg-[radial-gradient(circle_at_top_left,_#A991E2,_#231C32,_black)]">
+        <div
+          class="slide w-full h-[400px] md:h-[583px] bg-[radial-gradient(circle_at_top_left,_#A991E2,_#231C32,_black)]">
           <div class="h-full max-w-[1080px] mx-auto flex flex-col md:flex-row md:justify-start justify-center">
             <div class="h-auto md:h-[393px] md:w-[544px] w-full flex flex-col text-center md:text-left">
-              <h1 class="md:mt-[68px] z-10 text-white text-[60px] md:text-[115px] leading-[60px] md:leading-[98px] font-anton">
+              <h1
+                class="md:mt-[68px] z-10 text-white text-[60px] md:text-[115px] leading-[60px] md:leading-[98px] font-anton">
                 MANTO DOS
               </h1>
               <h1 class="z-10 text-white text-[60px] md:text-[115px] font-cormorant">
                 CAMPEÕES
               </h1>
 
-              <a href="#products" class="w-[180px] md:w-[192px] h-[50px] mx-auto md:mx-0 pl-[35px] md:pl-[44px] py-[20px] mt-[40px] md:mt-[90px] font-quicksand font-bold text-lg md:text-xl flex flex-row bg-white items-center rounded-[30px]">
+              <a href="#products"
+                class="w-[180px] md:w-[192px] h-[50px] mx-auto md:mx-0 pl-[35px] md:pl-[44px] py-[20px] mt-[40px] md:mt-[90px] font-quicksand font-bold text-lg md:text-xl flex flex-row bg-white items-center rounded-[30px]">
                 VER MAIS
                 <span class="material-symbols-outlined ml-[20px] md:ml-[27px]">chevron_right</span>
               </a>
             </div>
-            <img class="hidden md:block md:mt-[-13px] z-5 w-[410px] h-[600px]" src="./criadores/camila.png" alt="Manto dos Campeões" />
+            <img class="hidden md:block md:mt-[-13px] z-5 w-[410px] h-[600px]" src="./criadores/camila.png"
+              alt="Manto dos Campeões" />
           </div>
         </div>
       </div>
+    </div>
 
       <!-- Indicadores -->
       <div class="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
@@ -234,59 +340,41 @@
       </div>
     </div>
 
-        <script>
-    const btns = document.querySelectorAll('.color-btn');
-    const productImg = document.getElementById('productImage');
+    <script>
+      function toggleMenu() {
+        const menu = document.getElementById('hamburguer');
+        const icon = document.getElementById('hamburgerIcon');
 
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // remove destaque anterior
-        btns.forEach(b => b.classList.remove('ring-2'));
-        // adiciona destaque no botão clicado
-        btn.classList.add('ring-2');
-        // troca a imagem
-        const newImage = btn.getAttribute('data-image');
-        productImg.src = newImage;
+        if (menu.style.maxHeight === '0px' || menu.style.maxHeight === '') {
+          menu.style.maxHeight = '300px';
+          menu.style.opacity = '1';
+          menu.style.borderWidth = '2px';
+          icon.textContent = '✕';
+        } else {
+          menu.style.maxHeight = '0';
+          menu.style.opacity = '0';
+          menu.style.borderWidth = '0';
+          icon.textContent = '☰';
+        }
+      }
+
+      // Fechar menu ao clicar fora
+      document.addEventListener('click', function (event) {
+        const menu = document.getElementById('hamburguer');
+        const button = event.target.closest('button');
+
+        if (!button && menu.style.maxHeight !== '0px') {
+          menu.style.maxHeight = '0';
+          menu.style.opacity = '0';
+          menu.style.borderWidth = '0';
+          document.getElementById('hamburgerIcon').textContent = '☰';
+        }
       });
-    });
-  </script>
-
-
-<script>
-function toggleMenu() {
-  const menu = document.getElementById('hamburguer');
-  const icon = document.getElementById('hamburgerIcon');
-  
-  if (menu.style.maxHeight === '0px' || menu.style.maxHeight === '') {
-    menu.style.maxHeight = '300px';
-    menu.style.opacity = '1';
-    menu.style.borderWidth = '2px';
-    icon.textContent = '✕';
-  } else {
-    menu.style.maxHeight = '0';
-    menu.style.opacity = '0';
-    menu.style.borderWidth = '0';
-    icon.textContent = '☰';
-  }
-}
-
-// Fechar menu ao clicar fora
-document.addEventListener('click', function(event) {
-  const menu = document.getElementById('hamburguer');
-  const button = event.target.closest('button');
-  
-  if (!button && menu.style.maxHeight !== '0px') {
-    menu.style.maxHeight = '0';
-    menu.style.opacity = '0';
-    menu.style.borderWidth = '0';
-    document.getElementById('hamburgerIcon').textContent = '☰';
-  }
-});
-</script>
+    </script>
 
     <script>
       const slidesWrapper = document.getElementById("slidesWrapper");
-      const indicators = document.querySelectorAll(".indicator");
+      const indicatos = document.querySelectorAll(".indicator");
       const totalSlides = 2;
       let currentSlide = 0;
       let autoPlayInterval;
@@ -294,7 +382,7 @@ document.addEventListener('click', function(event) {
       function updateSlider() {
         slidesWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-        indicators.forEach((ind, index) => {
+        indicatos.forEach((ind, index) => {
           if (index === currentSlide) {
             ind.classList.add("active");
             ind.classList.remove("bg-gray-400");
@@ -328,24 +416,24 @@ document.addEventListener('click', function(event) {
       }
 
       // Touch/Swipe support
-      let touchStartX = 0;
-      let touchEndX = 0;
+      let touchStarX = 0;
+      let touchEnX = 0;
 
       slidesWrapper.addEventListener("touchstart", (e) => {
-        touchStartX = e.changedTouches[0].screenX;
+        touchStarX = e.changedTouches[0].screenX;
       });
 
       slidesWrapper.addEventListener("touchend", (e) => {
-        touchEndX = e.changedTouches[0].screenX;
+        touchEnX = e.changedTouches[0].screenX;
         handleSwipe();
       });
 
       function handleSwipe() {
-        if (touchStartX - touchEndX > 50) {
+        if (touchStarX - touchEnX > 50) {
           nextSlide();
           resetAutoPlay();
         }
-        if (touchEndX - touchStartX > 50) {
+        if (touchEnX - touchStarX > 50) {
           currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
           updateSlider();
           resetAutoPlay();
@@ -368,780 +456,868 @@ document.addEventListener('click', function(event) {
       // Iniciar autoplay
       startAutoPlay();
     </script>
+  </section>
 
+  <section id="sobre" class="flex flex-col items-center justify-center px-4">
+    <div class="mt-[60px] md:mt-[90px] w-full max-w-[1080px] flex items-center justify-center relative">
+      <div class="w-full flex items-center">
+        <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+        <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
+        <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+      </div>
+      <h1
+        class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[50px] text-white z-10 font-oswald font-regular whitespace-nowrap px-4">
+        SOBRE NÓS
+      </h1>
+    </div><br>
 
-</section>
+    <!-- Cards -->
+    <div
+      class="mt-[40px] md:mt-[60px] flex flex-col md:flex-row md:gap-[15px] gap-[35px] justify-center items-center w-full max-w-[1080px]">
 
-<section id="sobre" class="flex flex-col items-center justify-center">
-    <div class="mt-[90px] w-[1080px] flex items-center justify-center relative">
-    <div class="w-full w-[500px] sm:w-[500px] md:w-[700px] lg:w-[1080px] flex items-center">
-      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
-      <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
-      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+      <!-- Card 1 -->
+      <div class="relative md:col-span-2">
+        <div
+          class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
+          <img src="./bandeiras/bandeiralivro.png" alt="">
+        </div>
+        <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-3">
+          <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
+            No dia 06 de agosto de 2025, nasceu oficialmente o T3RRIFIER eSports.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="relative md:col-span-2">
+        <div
+          class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
+          <img src="./bandeiras/bandeirapessoa.png" alt="">
+        </div>
+        <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-3">
+          <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
+            A ideia surgiu da visão de Guilherme Basilio, Glaucyo Gabriel, Camila, Dafny, Bryan e Arthur.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="relative md:col-span-2">
+        <div
+          class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
+          <img src="./bandeiras/bandeirat3.png" alt="">
+        </div>
+        <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-3">
+          <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
+            O nome "T3RRIFIER" carrega o espírito do time: causar impacto, respeito e até um certo temor nos
+            adversários.
+          </p>
+        </div>
+      </div>
     </div>
-    <h1 class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[50px] text-white z-10 font-oswald font-regular">
-      SOBRE NÓS
-    </h1>
-  </div><br>
+  </section>
 
-  <!-- Cards -->
-  <div class="mt-[60px] flex flex-col sm:flex-col md:grid md:grid-cols-4 lg:flex lg:flex-row gap-[50px] md:gap-[15px] md:gap-y-[50px] justify-center items-start">
-
-    <!-- Card 1 -->
-    <div class="relative md:col-span-2">
-      <div class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
-        <img src="./bandeiras/bandeiralivro.png" alt="">
-      </div>
-      <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-3">
-        <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
-          No dia 06 de agosto de 2025, nasceu oficialmente o T3RRIFIER eSports.
-        </p>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="relative md:col-span-2">
-      <div class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
-        <img src="./bandeiras/bandeirapessoa.png" alt="">
-      </div>
-      <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-3">
-        <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
-          A ideia surgiu da visão de Guilherme Basilio, Glaucyo Gabriel, Camila, Dafny, Bryan e Arthur.
-        </p>
-      </div>
-    </div>
-
-    <!-- Card 3 - Centralizado -->
-    <div class="relative md:col-span-2 md:col-start-2">
-      <div class="absolute -top-[8px] left-1/2 -translate-x-1/2 z-10 w-[176px] h-[70px] flex items-center justify-center">
-        <img src="./bandeiras/bandeirat3.png" alt="">
-      </div>
-      <div class="bg-[#2b2b2b] rounded-3xl w-[351px] h-[334px] flex items-center justify-center px-8 pt-12">
-        <p class="text-white font-quicksand text-2xl text-left leading-relaxed">
-          O nome "T3RRIFIER" carrega o espírito do time: causar impacto, respeito e até um certo temor nos adversários.
-        </p>
-      </div>
-    </div>
-</div>
-</section><br><br><br>
+  <br><br><br>
 
   <!-- Produtos -->
-<section class="relative bg-[url('./imgfortnite.png')] bg-cover no-repeat w-full h-[669px] flex flex-col items-center" id="products">
-<div class="relative bg-[url('./imgfortnite.png')] bg-cover no-repeat w-full h-[669px] flex flex-col items-center">
+  <section
+    class="relative bg-[url('./imgfortnite.png')] bg-cover no-repeat w-full min-h-[600px] md:h-[669px] flex flex-col items-center"
+    id="products">
+    <div
+      class="relative bg-[url('./imgfortnite.png')] bg-cover no-repeat w-full min-h-[600px] md:h-[669px] flex flex-col items-center">
 
-<!-- Linha e titulo -->
-  <div class="absolute top-[50px] mt-[90px] w-[1080px] flex items-center justify-center relative">
-    <div class="w-full flex items-center">
-      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
-      <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
-      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
-    </div>
-    <h1 class="absolute text-[48px] text-white font-oswald font-regular">
-      PRODUTOS
-    </h1>
-  </div>
-
-  <!-- Caneca preta -->
-  <div class="absolute top-[230px] gap-[21px] flex items-center">
-<div class="flex-col flex items-center pt-10 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[24px]">
-  <a href=""><img id="productImagev" class="w-[180px] h-[170px]" src="./produtos/canecaP.png" alt=""></a>
-  <div class="flex flex-col gap-[14px]">
-  <p class="text-white text-xl font-quicksand">Caneca T3rrifier - BLACK</p>
-  <div class="flex">
-  <button class="color-btv bg-[#000000] w-[14px] h-[14px] rounded-3xl"></button>
-  </div>
-  <div class="pt-6 flex items-center gap-[30px]">
-<p class="text-xl text-white font-quicksand">R$ 45,00</p>
-<div class="flex-col flex items-end">
-    <button id="addToCertv" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand rounded-xl hover:bg-[#9500f9] transition">
-      Carrinho
-    </button>
-    </div>
-</div>
-  </div>
-  
-   <!-- Caneca branca -->
-</div>
-<div class="flex-col flex items-center pt-10 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[24px]">
-  <a href=""><img id="productImageo" class="w-[180px] h-[170px]" src="./produtos/canecaB.png" alt=""></a>
-  <div class="flex flex-col gap-[14px]">
-  <p class="text-white text-xl font-quicksand font-regular">Caneca T3rrifier - WHITE</p>
-  <div class="flex">
-  <button class="color-btp bg-[#ffffff] w-[14px] h-[14px] rounded-3xl"></button>
-  </div>
-  <div class="pt-6 flex items-center gap-[30px]">
-<p class="text-xl text-white font-quicksand font-regular">R$ 45,00</p>
-<div class="flex-col flex items-end">
-    <button id="addToCerto" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] transition">
-      Carrinho
-    </button>
-    </div>
-</div>
-  </div>
-</div>
-
- <!-- Camisa -->
-<div class="flex-col flex pt-7 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[10px]">
-  <div class="items-center flex flex-col">
-  <a href=""><img id="productImagen" class="w-[195px] h-[195px]" src="./produtos/camisa.png" alt=""></a>
-  </div>
-  <div class="flex pl-3 flex-col gap-[14px]">
-  <p class="text-white text-xl font-quicksand font-regular">Camisa T3rrifier</p>
-  <div class="flex">
-  <button class="color-btm bg-[#000000] w-[14px] h-[14px] rounded-3xl"></button>
-  </div>
-  <div class="pt-6 flex items-center gap-[30px]">
-<p class="text-xl text-white font-quicksand font-regular">R$ 75,00</p>
-<div class="flex-col flex items-end">
-    <button id="addToCarto" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] transition">
-      Carrinho
-    </button>
-    </div>
-</div>
-  </div>
-</div>
-
- <!-- moletons e ver carrinho -->
-<div class="flex-col flex pt-7 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[15px]">
-  <div class="items-center flex flex-col">
-  <a href=""><img id="productImage" alt="Produto" class="w-[200px] h-[190px]" src="./produtos/moletomB.png" alt=""></a>
-  </div>
-  <div class="flex pl-3 flex-col gap-[14px]">
-  <p class="text-white text-xl font-quicksand font-regular">Moletom T3rrifier</p>
-  <div class="flex gap-[15px]">
-  <button data-color="Branco" data-image="./produtos/moletomB.png" class="color-btn bg-[#ffffff] w-[14px] h-[14px] rounded-3xl"></button>
-  <button  data-color="Preto" data-image="./produtos/moletomP.png" class="color-btn bg-[#000000] w-[14px] h-[14px] rounded-3xl"></button>
-  <button data-color="Roxo" data-image="./produtos/moletomR.png" class="color-btn bg-[#9500f9] w-[14px] h-[14px] rounded-3xl"></button>
-  </div>
-  <div class="pt-6 flex items-center gap-[30px]">
-<p class="text-xl text-white font-quicksand">R$ 90,00</p>
-<div class="flex-col flex items-end">
-    <button id="addToCart" class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] transition">
-      Carrinho
-    </button>
-    </div>
-</div>
-  </div>
-    <a href="carrinho.html" class=" block mt-4 text-[#ffffff] underline">Ver Carrinho 🛒</a>
-  </div>
-</div>
-</div>
-
-<script>
-
-    const button = document.querySelectorAll('.color-btn');
-    const productImages = document.getElementById('productImage');
-    const addToCartBtn = document.getElementById('addToCart');
-
-    let selectedColor = "Preto";
-
-    // Troca cor/imagem
-    button.forEach(btn => {
-      btn.addEventListener('click', () => {
-        button.forEach(b => b.classList.remove('ring-2'));
-        btn.classList.add('ring-2');
-        productImage.src = btn.dataset.image;
-        selectedColor = btn.dataset.color;
-      });
-    });
+      <!-- Linha e titulo -->
+      <div
+        class="relative top-[50px] mt-[40px] md:mt-[90px] w-full md:w-[1080px] px-4 md:px-0 flex items-center justify-center relative">
+        <div class="w-full flex items-center">
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+          <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+        </div>
+        <h1
+          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[50px] text-white z-10 font-oswald font-regular whitespace-nowrap px-2 md:px-0">
+          PRODUTOS
+        </h1>
+      </div>
 
 
-    // Adicionar ao carrinho
-    addToCartBtn.addEventListener('click', () => {
-      const product = {
-        name: "Moletom T3rrifier",
-        color: selectedColor,
-        price: 90.00
-      };
+      <!-- Navegação Carrossel (Mobile) -->
+      <div class="md:hidden relative flex gap-[300px] z-10 mt-[300px]">
+        <button onclick="prevProduct()" class="carousel-nav">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button onclick="nextProduct()" class="carousel-nav">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
 
+      <div class="absolute flex z-5 items-center top-[160px] carousel-container md:gap-[21px] md:top-[230px]">
+        <div id="carouselWrapper" class="flex md:gap-[21px] carousel-wrapper">
 
-      
-      // Recupera o carrinho existente ou cria um novo
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(product);
-
-      // Salva de volta
-      localStorage.setItem('cart', JSON.stringify(cart));
-    });
-  </script>
-
-
-<script>
-
-    const butten = document.querySelectorAll('.color-btm');
-    const productImagez = document.getElementById('productImagen');
-    const addToCartBtm = document.getElementById('addToCarto');
-
-    let selectedCelor = "Preto";
-
-
-
-    // Adicionar ao carrinho
-    addToCartBtm.addEventListener('click', () => {
-      const preduct = {
-        name: "Camisa T3rrifier",
-        color: selectedCelor,
-        price: 75.00
-      };
-
-
-      
-      // Recupera o carrinho existente ou cria um novo
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(preduct);
-
-      // Salva de volta
-      localStorage.setItem('cart', JSON.stringify(cart));
-    });
-  </script>
-
-<script>
-
-    const buttin = document.querySelectorAll('.color-btp');
-    const productImagej = document.getElementById('productImageo');
-    const addToCartBtk = document.getElementById('addToCerto');
-
-    let selectedCilor = "Branco";
-
-
-
-    // Adicionar ao carrinho
-    addToCartBtk.addEventListener('click', () => {
-      const priduct = {
-        name: "Caneca T3rrifier",
-        color: selectedCilor,
-        price: 45.00
-      };
-
-
-      
-      // Recupera o carrinho existente ou cria um novo
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(priduct);
-
-      // Salva de volta
-      localStorage.setItem('cart', JSON.stringify(cart));
-    });
-  </script>
-
-<script>
-
-    const buttvn = document.querySelectorAll('.color-btv');
-    const productImagev = document.getElementById('productImagev');
-    const addToCartBtv = document.getElementById('addToCertv');
-
-    let selectedCvlor = "Preto";
-
-
-
-    // Adicionar ao carrinho
-    addToCartBtv.addEventListener('click', () => {
-      const prvduct = {
-        name: "Caneca T3rrifier",
-        color: selectedCvlor,
-        price: 45.00
-      };
-
-
-      
-      // Recupera o carrinho existente ou cria um novo
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(prvduct);
-
-      // Salva de volta
-      localStorage.setItem('cart', JSON.stringify(cart));
-    });
-  </script>
-
-<script>
-    const buttons = document.querySelectorAll('.color-btn');
-    const productImage = document.getElementById('productImage');
-
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // remove destaque anterior
-        buttons.forEach(b => b.classList.remove('ring-2'));
-        // adiciona destaque no botão clicado
-        btn.classList.add('ring-2');
-        // troca a imagem
-        const newImage = btn.getAttribute('data-image');
-        productImage.src = newImage;
-      });
-    });
-  </script>
-</section>
-
-<!-- equipes -->
- <section id="equipes">
- <div class="max-w-[1080px] justify-center items-center mx-auto flex flex-col">
-        <!-- Titulo -->
-        <div class="mt-[90px] mx-auto items-center justify-center w-[1080px] flex">
-          <div class="w-full w-[500px] sm:w-[500px] md:w-[700px] lg:w-[1080px] flex items-center">
-            <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
-            <hr class="w-[1065px] h-[4px] bg-[#9500f9] z-5 border-[#9500f9]" />
-            <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+          <!-- Caneca Preta -->
+          <div class="carousel-item flex justify-center px-4 md:px-0">
+            <div
+              class="flex-col flex items-center pt-10 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[24px]">
+              <a href=""><img id="productImagev" class="w-[180px] h-[170px]" src="./produtos/canecaP.png" alt=""></a>
+              <div class="flex flex-col gap-[14px]">
+                <p class="text-white text-xl font-quicksand font-regular">Caneca T3rrifier - BLACK</p>
+                <div class="flex">
+                  <button class="color-btv bg-[#000000] w-[14px] h-[14px] rounded-3xl"></button>
+                </div>
+                <div class="pt-6 flex items-center gap-[70px]">
+                  <p class="text-xl text-white font-quicksand font-regular">R$ 45,00</p>
+                  <div class="flex-col flex items-end">
+                    <button id="addToCertv"
+                      class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] hover:text-white transition">
+                      Carrinho
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h1
-            class="absolute text-[40px] md:text-[50px] text-white z-10 font-oswald font-regular ">
-            EQUIPES
+
+          <!-- Caneca Branca -->
+          <div class="carousel-item flex justify-center px-4 md:px-0">
+            <div
+              class="flex-col flex items-center pt-10 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[24px]">
+              <a href=""><img id="productImageo" class="w-[180px] h-[170px]" src="./produtos/canecaB.png" alt=""></a>
+              <div class="flex flex-col gap-[14px]">
+                <p class="text-white text-xl font-quicksand font-regular">Caneca T3rrifier - WHITE</p>
+                <div class="flex">
+                  <button class="color-btp bg-[#ffffff] w-[14px] h-[14px] rounded-3xl"></button>
+                </div>
+                <div class="pt-6 flex items-center gap-[70px]">
+                  <p class="text-xl text-white font-quicksand font-regular">R$ 45,00</p>
+                  <div class="flex-col flex items-end">
+                    <button id="addToCerto"
+                      class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] hover:text-white transition">
+                      Carrinho
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Camisa -->
+          <div class="carousel-item flex justify-center px-4 md:px-0">
+            <div class="flex-col flex pt-7 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[10px]">
+              <div class="items-center flex flex-col">
+                <a href=""><img id="productImagen" class="w-[195px] h-[195px]" src="./produtos/camisa.png" alt=""></a>
+              </div>
+              <div class="flex pl-3 flex-col gap-[14px]">
+                <p class="text-white text-xl font-quicksand font-regular">Camisa T3rrifier</p>
+                <div class="flex">
+                  <button class="color-btm bg-[#000000] w-[14px] h-[14px] rounded-3xl"></button>
+                </div>
+                <div class="pt-6 flex items-center gap-[70px]">
+                  <p class="text-xl text-white font-quicksand font-regular">R$ 75,00</p>
+                  <div class="flex-col flex items-end">
+                    <button id="addToCarto"
+                      class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] hover:text-white transition">
+                      Carrinho
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Moletom e Ver Carrinho -->
+          <div class="carousel-item flex justify-center px-4 md:px-0">
+            <div class="flex-col flex pt-7 bg-[#000000] bg-opacity-80 w-[254px] h-[366px] rounded-xl gap-[15px]">
+              <div class="items-center flex flex-col">
+                <a href=""><img id="productImage" alt="Produto" class="w-[200px] h-[190px]"
+                    src="./produtos/moletomB.png"></a>
+              </div>
+              <div class="flex pl-3 flex-col gap-[14px]">
+                <p class="text-white text-xl font-quicksand font-regular">Moletom T3rrifier</p>
+                <div class="flex gap-[15px]">
+                  <button data-color="Branco" data-image="./produtos/moletomB.png"
+                    class="color-btn bg-[#ffffff] w-[14px] h-[14px] rounded-3xl"></button>
+                  <button data-color="Preto" data-image="./produtos/moletomP.png"
+                    class="color-btn bg-[#000000] w-[14px] h-[14px] rounded-3xl"></button>
+                  <button data-color="Roxo" data-image="./produtos/moletomR.png"
+                    class="color-btn bg-[#9500f9] w-[14px] h-[14px] rounded-3xl"></button>
+                </div>
+                <div class="pt-6 flex items-center gap-[70px]">
+                  <p class="text-xl text-white font-quicksand font-regular">R$ 90,00</p>
+                  <div class="flex-col flex items-end">
+                    <button id="addToCart"
+                      class="w-[80px] h-[30px] text-sm bg-[#ffffff] text-[#000000] font-quicksand font-regular rounded-xl hover:bg-[#9500f9] hover:text-white transition">
+                      Carrinho
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="absolute flex md:top-[620px] top-[550px]">
+        <a href="carrinho.html" class=" text-[#ffffff] underline hover:text-[#9500f9] transition">Ver Carrinho 🛒</a>
+      </div>
+    </div>
+    
+    <script>
+      // Carrossel Mobile
+      const carouselWrapper = document.getElementById('carouselWrapper');
+      const indicators = document.querySelectorAll('.carousel-indicator');
+      const totalProducts = 4;
+      let currentProduct = 0;
+
+      function updateCarousel() {
+        // Só funciona em mobile
+        if (window.innerWidth < 768) {
+          carouselWrapper.style.transform = `translateX(-${currentProduct * 100}%)`;
+
+          indicators.forEach((ind, index) => {
+            if (index === currentProduct) {
+              ind.classList.add('active');
+              ind.classList.remove('bg-gray-400');
+              ind.classList.add('bg-white');
+            } else {
+              ind.classList.remove('active');
+              ind.classList.remove('bg-white');
+              ind.classList.add('bg-gray-400');
+            }
+          });
+        }
+      }
+
+      function nextProduct() {
+        currentProduct = (currentProduct + 1) % totalProducts;
+        updateCarousel();
+      }
+
+      function prevProduct() {
+        currentProduct = (currentProduct - 1 + totalProducts) % totalProducts;
+        updateCarousel();
+      }
+
+      function goToProduct(index) {
+        currentProduct = index;
+        updateCarousel();
+      }
+
+      // Touch/Swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      carouselWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      carouselWrapper.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        if (window.innerWidth < 768) {
+          if (touchStartX - touchEndX > 50) {
+            nextProduct();
+          }
+          if (touchEndX - touchStartX > 50) {
+            prevProduct();
+          }
+        }
+      }
+
+      // Reset no resize
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+          carouselWrapper.style.transform = 'none';
+        } else {
+          updateCarousel();
+        }
+      });
+
+      const button = document.querySelectorAll('.color-btn');
+      const productImage = document.getElementById('productImage');
+      const addToCartBtn = document.getElementById('addToCart');
+
+      let selectedColor = "Preto";
+
+      button.forEach(btn => {
+        btn.addEventListener('click', () => {
+          button.forEach(b => b.classList.remove('ring-2'));
+          btn.classList.add('ring-2');
+          productImage.src = btn.dataset.image;
+          selectedColor = btn.dataset.color;
+        });
+      });
+
+      addToCartBtn.addEventListener('click', () => {
+        const product = {
+          name: "Moletom T3rrifier",
+          color: selectedColor,
+          price: 90.00
+        };
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+      });
+
+      const addToCartBtm = document.getElementById('addToCarto');
+      addToCartBtm.addEventListener('click', () => {
+        const product = {
+          name: "Camisa T3rrifier",
+          color: "Preto",
+          price: 75.00
+        };
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+       
+      });
+
+      const addToCartBtk = document.getElementById('addToCerto');
+      addToCartBtk.addEventListener('click', () => {
+        const product = {
+          name: "Caneca T3rrifier",
+          color: "Branco",
+          price: 45.00
+        };
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+       
+      });
+
+      const addToCartBtv = document.getElementById('addToCertv');
+      addToCartBtv.addEventListener('click', () => {
+        const product = {
+          name: "Caneca T3rrifier",
+          color: "Preto",
+          price: 45.00
+        };
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+      
+      });
+    </script>
+  </section>
+
+  <!-- equipes -->
+  <section id="equipes">
+    <div class="max-w-[1080px] mx-auto flex flex-col items-center">
+      <!-- Titulo -->
+      <div
+        class="relative top-[50px] mt-[40px] md:mt-[90px] w-full md:w-[1080px] px-4 md:px-0 flex items-center justify-center relative">
+        <div class="w-full flex items-center">
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+          <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+        </div>
+        <h1
+          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[50px] text-white z-10 font-oswald font-regular whitespace-nowrap px-2 md:px-0">
+          EQUIPES
+        </h1>
+      </div>
+
+      <!-- Jogos -->
+       <div class="flex-col justify-center mt-[80px]">
+      <div class="mt-[43px] gap-[50px] flex flex-col md:grid grid-cols-3">
+        <div class="flex flex-col items-center">
+          <div
+            class="bg-[url('./equipes/fundofortnite.svg')] rounded-xl bg-cover bg-no-repeat bg-center w-[356px] h-[256px] flex items-center justify-center">
+            <img src="./equipes/iconefortnite.svg" alt="" />
+          </div>
+          <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">
+            FORTNITE
           </h1>
         </div>
 
-        <!-- Jogos -->
-        
-         <div>
-           <div class="mt-[43px] gap-[40px] flex flex-col sm:flex-col md:grid md:grid-cols-4 lg:flex lg:flex-row">
-            <div class="relative md:col-span-2">
-          <div class="flex flex-col items-center">
-            <div
-              class="bg-[url('./equipes/fundofortnite.svg')] rounded-xl bg-no-repeat bg-center w-[340px] h-[256px] flex items-center justify-center"
-            >
-              <img src="./equipes/iconefortnite.svg" alt="" />
-            </div>
-            <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">
-              FORTNITE
-            </h1>
-          </div>
-        </div>
-
-          <div class="relative md:col-span-2">
-            <div class="flex flex-col items-center">
-            <div
-              class="bg-[url('./equipes/fundoclash.svg')] rounded-xl bg-no-repeat bg-center w-[340px] h-[256px] flex items-center justify-center"
-            >
-              <img src="./equipes/iconeclash.svg" alt="" />
-            </div>
-            <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">CLASH</h1>
-          </div>
-          </div>
-
-          <div class="relative md:col-span-2 md:col-start-2">
-            <div class="flex flex-col items-center">
-            <div
-              class="bg-[#202020] rounded-xl w-[335px] h-[256px] flex items-center justify-center"
-            >
-              <img src="./equipes/interrogação.svg" alt="" />
-            </div>
-            <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">
-              EM BREVE...
-            </h1>
-          </div>
-        </div>
-          </div>
-         </div>
-
-        <div>
+        <div class="flex flex-col items-center">
           <div
-          class="flex items-center justify-between mx-auto flex-col md:w-[700px] md:flex md:flex-row mt-[140px] w-[916px] text-white"
-        >
-          <div class="">
-            <div class="flex">
-            <h1 class="font-oswald font-regular text-8xl">4</h1>
-            <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]"
-              >JOGADORES</span
-            >
+            class="bg-[url('./equipes/fundoclash.svg')] rounded-xl bg-cover bg-no-repeat bg-center w-[356px] h-[256px] flex items-center justify-center">
+            <img src="./equipes/iconeclash.svg" alt="" />
           </div>
-          </div>
-          <div class="md:h-[81px] md:w-[4px] bg-[#545454] md:flex-col mt-[20px] w-[200px] h-[4px]"></div>
-          <div class="">
-            <div class="flex mt-[10px] md:flex">
-            <h1 class="font-oswald font-regular text-8xl">4</h1>
-            <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]"
-              >CAMPEONATOS</span
-            >
-          </div>
-          </div>
-          <div class="bg-[#545454] w-[200px] h-[4px] mt-[20px] md:h-[81px] md:w-[4px] "></div>
-          <div class="">
-            <div class="flex mt-[10px] md:flex">
-            <h1 class="font-oswald font-regular text-8xl">2</h1>
-            <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]"
-              >TÍTULOS</span
-            >
-          </div>
-          </div>
+          <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">CLASH</h1>
         </div>
+
+        <div class="flex flex-col items-center">
+          <div class="bg-[#202020] rounded-xl w-[356px] h-[256px] flex items-center justify-center">
+            <img src="./equipes/interrogação.svg" alt="" />
+          </div>
+          <h1 class="text-white font-quicksand font-regular text-2xl mt-[20px]">
+            EM BREVE...
+          </h1>
         </div>
       </div>
-
-   </section><br><br><br>
-
-   <section id="clipes">
-    <div class="flex flex-col items-center justify-center">
-   <div class="mt-[90px] w-[1080px] flex items-center justify-center relative">
-    <div class="w-full flex items-center">
-      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
-      <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
-      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
-    </div>
-    <h1 class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[50px] text-white z-10 font-oswald font-regular">
-      2025 CLIPES
-    </h1>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between mx-auto mt-[140px] w-full max-w-[916px] px-4 text-white pl-[120px] md:pl-0 items-center gap-12 md:gap-0">
+  <div class="flex w-full md:w-auto">
+    <h1 class="font-oswald font-regular text-8xl">4</h1>
+    <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]">JOGADORES</span>
   </div>
-</div><br><br><br>
+  <div class="hidden md:block h-[81px] w-[4px] bg-[#545454]"></div>
+  <div class="flex w-full md:w-auto">
+    <h1 class="font-oswald font-regular text-8xl">4</h1>
+    <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]">CAMPEONATOS</span>
+  </div>
+  <div class="hidden md:block h-[81px] w-[4px] bg-[#545454]"></div>
+  <div class="flex w-full md:w-auto">
+    <h1 class="font-oswald font-regular text-8xl">2</h1>
+    <span class="font-quicksand font-regular text-2xl mt-[56px] ml-[7px]">TÍTULOS</span>
+  </div>
+</div>
+    </div>
+</div>
+  </section><br><br><br>
 
-<div class="w-full">
+  <section id="clipes">
+    <div class="max-w-[1080px] flex mx-auto flex-col items-center">
+    <div
+        class="relative top-[50px] mt-[40px] md:mt-[90px] w-full md:w-[1080px] px-4 md:px-0 flex items-center justify-center relative">
+        <div class="w-full flex items-center">
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+          <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+        </div>
+        <h1
+          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[50px] text-white z-10 font-oswald font-regular whitespace-nowrap px-2 md:px-0">
+          2025 CLIPES
+        </h1>
+      </div>
+
+    <div class="w-full flex flex-col md:pt-[90px]">
       <video class="w-full h-[650px]" controls autoplay muted loop>
         <source src="clipe.mp4" type="video/mp4">
         Seu navegador não suporta vídeo.
       </video>
     </div>
-  </div>
+    </div>
+    </div>
   </section>
 
-  <section id="matches ">
-      <div class="max-w-[1080px] mt-[90px] mx-auto flex flex-col">
-        <div class="mt-[90px] w-[1080px] flex relative">
-          <div class="w-full flex items-center">
-            <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
-            <hr class="w-[1065px] h-[4px] bg-[#9500f9] z-5 border-[#9500f9]" />
-            <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
-          </div>
-          <h1
-            class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[50px] text-white z-10 font-oswald font-regular"
-          >
-            NEXT MATCHES
-          </h1>
+  <section id="matches">
+    <div class="max-w-[1080px] mt-[90px] items-center justify-center mx-auto flex flex-col">
+      <div class="relative top-[50px] mt-[40px] md:mt-[90px] w-full md:w-[800px] lg:w-[1080px] px-4 md:px-0 flex items-center justify-center relative">
+        <div class="w-full flex items-center">
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+          <hr class="w-[1065px] h-[4px] bg-[#9500f9] z-5 border-[#9500f9]" />
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
         </div>
+        <h1
+          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[50px] text-white z-10 font-oswald font-regular">
+          NEXT MATCHES
+        </h1>
+      </div>
 
-        <div class="max-w-[1080px] mt-[74px] flex flex-col">
-          <div class="flex items-center">
-            <img src="./matches/t3.svg" alt="" />
+      <div class="max-w-[1080px] mt-[110px] mx-auto items-center flex flex-col">
+        <div class="flex items-center">
+          <img class="w-[130px] md:w-[200px]" src="./matches/t3.svg" alt="" />
+          <div class="flex items-center justify-center">
+            <img class="relative z-5 hidden md:block" src="./matches/faixadireita.svg" alt="" />
+            <h1 class="absolute z-10 hidden md:block text-white font-barlow text-3xl">
+              T3RRIFIER
+            </h1>
+          </div>
+          <div class="flex flex-col items-center justify-center ml-[25px]">
+            <h1 class="text-white font-oswald font-regular text-5xl">
+              19:30
+            </h1>
+            <h1 class="mt-[17px] text-[#9500f9] font-oswald font-bold text-3xl">
+              02/10
+            </h1>
+          </div>
+          <div class="flex items-center ml-[25px]">
             <div class="flex items-center justify-center">
-              <img
-                class="relative z-5"
-                src="./matches/faixadireita.svg"
-                alt=""
-              />
-              <h1
-                class="absolute left-[650px] z-10 text-white font-barlow text-3xl"
-              >
+              <img class="relative z-5 hidden md:block" src="./matches/faixaesquerda.svg" alt="" />
+              <h1 class="absolute z-10 hidden md:block text-white font-barlow text-3xl">
+                GRECIA
+              </h1>
+            </div>
+            <img class="ml-[17px] w-[110px] md:w-[200px]" src="./matches/grecia.svg" alt="" />
+          </div>
+        </div>
+        <div class="flex items-center md:flex md:items-center md:px-0 gap-[25px] md:gap-0 justify-between mt-[42px] mx-auto">
+          <img class="w-[100px] md:w-[160px]" src="./matches/krc.svg" alt="" />
+         <div class="hidden md:block">
+           <div class="flex items-center justify-center">
+            <img class="relative z-5 ml-[30px] hidden md:block" src="./matches/faixadireita.svg" alt="" />
+            <h1 class="absolute z-10 hidden md:block text-white font-barlow text-3xl">
+              KRC
+            </h1>
+          </div>
+         </div>
+          <div class="flex flex-col items-center justify-center ml-[33px] md:ml-[25px]">
+            <h1 class="text-white font-oswald font-regular text-5xl">
+              21:00
+            </h1>
+            <h1 class="mt-[17px] text-[#9500f9] font-oswald font-bold text-3xl">
+              05/10
+            </h1>
+          </div>
+          <div class="flex items-center ml-[20px]">
+            <div class="flex items-center justify-center">
+              <img class="relative z-5 hidden md:block" src="./matches/faixaesquerda.svg" alt="" />
+              <h1 class="absolute z-10 hidden md:block text-white font-barlow text-3xl">
                 T3RRIFIER
               </h1>
             </div>
-            <div class="flex flex-col items-center justify-center ml-[25px]">
-              <h1 class="text-white font-oswald font-regular text-5xl">
-                19:30
-              </h1>
-              <h1
-                class="mt-[17px] text-[#9500f9] font-oswald font-bold text-3xl"
-              >
-                02/10
-              </h1>
-            </div>
-            <div class="flex items-center ml-[25px]">
-              <div class="flex items-center justify-center">
-                <img
-                  class="relative z-5"
-                  src="./matches/faixaesquerda.svg"
-                  alt=""
-                />
-                <h1
-                  class="absolute right-[700px] z-10 text-white font-barlow text-3xl"
-                >
-                  GRECIA
-                </h1>
-              </div>
-              <img class="ml-[17px]" src="./matches/grecia.svg" alt="" />
-            </div>
+            <img class="w-[130px] md:w-[200px]" src="./matches/t3.svg" alt="" />
           </div>
-          <div class="flex items-center mt-[42px] mx-auto">
-            <img src="./matches/krc.svg" alt="" />
-            <div class="flex items-center justify-center">
-              <img
-                class="relative z-5 ml-[30px]"
-                src="./matches/faixadireita.svg"
-                alt=""
-              />
-              <h1
-                class="absolute left-[700px] z-10 text-white font-barlow text-3xl"
-              >
-                KRC
-              </h1>
-            </div>
-            <div class="flex flex-col items-center justify-center ml-[25px]">
-              <h1 class="text-white font-oswald font-regular text-5xl">
-                21:00
-              </h1>
-              <h1
-                class="mt-[17px] text-[#9500f9] font-oswald font-bold text-3xl"
-              >
-                05/10
-              </h1>
-            </div>
-            <div class="flex items-center ml-[20px]">
-              <div class="flex items-center justify-center">
-                <img
-                  class="relative z-5"
-                  src="./matches/faixaesquerda.svg"
-                  alt=""
-                />
-                <h1
-                  class="absolute right-[680px] z-10 text-white font-barlow text-3xl"
-                >
-                  T3RRIFIER
-                </h1>
-              </div>
-              <img src="./matches/t3.svg" alt="" />
-            </div>
+        </div>
+        <div class="flex items-center mt-[42px]">
+          <img class="w-[130px] md:w-[200px]" src="./matches/t3.svg" alt="" />
+          <div class="flex items-center justify-center">
+            <img class="relative z-5 ml-[-5px] hidden md:block" src="./matches/faixadireita.svg" alt="" />
+            <h1 class="absolute z-10 hidden md:block text-white font-barlow text-3xl">
+              T3RRIFIER
+            </h1>
           </div>
-          <div class="flex items-center mt-[42px]">
-            <img src="./matches/t3.svg" alt="" />
+          <div class="flex flex-col items-center justify-center ml-[25px]">
+            <h1 class="text-white font-oswald font-regular text-5xl">
+              20:00
+            </h1>
+            <h1 class="mt-[17px] text-[#9500f9] font-oswald font-bold text-3xl">
+              08/10
+            </h1>
+          </div>
+          <div class="flex items-center ml-[25px]">
             <div class="flex items-center justify-center">
-              <img
-                class="relative z-5 ml-[-5px]"
-                src="./matches/faixadireita.svg"
-                alt=""
-              />
-              <h1
-                class="absolute left-[650px] z-10 text-white font-barlow text-3xl"
-              >
-                T3RRIFIER
+              <img class="relative z-5 hidden md:block" src="./matches/faixaesquerda.svg" alt="" />
+              <h1 class="absolute z-10 hidden md:block text-white font-barlow text-3xl">
+                RAIKAB
               </h1>
             </div>
-            <div class="flex flex-col items-center justify-center ml-[25px]">
-              <h1 class="text-white font-oswald font-regular text-5xl">
-                20:00
-              </h1>
-              <h1
-                class="mt-[17px] text-[#9500f9] font-oswald font-bold text-3xl"
-              >
-                08/10
-              </h1>
-            </div>
-            <div class="flex items-center ml-[25px]">
-              <div class="flex items-center justify-center">
-                <img
-                  class="relative z-5"
-                  src="./matches/faixaesquerda.svg"
-                  alt=""
-                />
-                <h1
-                  class="absolute right-[690px] z-10 text-white font-barlow text-3xl"
-                >
-                  RAIKAB
-                </h1>
-              </div>
-              <img class="ml-[15px]" src="./matches/raikab.svg" alt="" />
-            </div>
+            <img class="ml-0 md:ml-[15px] w-[130px] md:w-[200px]" src="./matches/raikab.svg" alt="" />
           </div>
         </div>
       </div>
- </section>
-
-  <section id="criadores" class="flex items-center justify-center">
-    <div class="w-full max-w-7xl">
-        
-<div class="flex flex-col items-center justify-center">
-   <div class="mt-[90px] w-[1080px] flex items-center justify-center relative">
-    <div class="w-full flex items-center">
-      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
-      <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
-      <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
     </div>
-    <h1 class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[48px] text-white z-10 font-oswald font-regular">
-      CRIADORES
-    </h1>
-  </div><br><br><br><br>
-</div>
-
-        <!-- Grid de Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-6">
-            <!-- Card 1 - Glaucio -->
-            <div class="card-hover justify-center flex relative">
-               
-                    <img src="./criadores/Carta.png" alt="">
-               
-                <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="./criadores/identificações/adm.png" alt="">
-                </div>
-                <div class="opacity-90 hover:opacity-100 transition-opacity left-3 w-[186px] h-[196px] absolute top-3">
-                <img src="./criadores/glaucyo.png">
-                </div>
-                <div class="absolute top-6 right-4 space-y-3">
-                    <a href="https://www.instagram.com/gabrielvianna12?igsh=dzl5amoyZW54dzBs&utm_source=qr" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                            <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-oswald font-bold">GLAUCYO</p>
-                </div>
-            </div>
-            
-            <!-- Card 2 - Guilherme -->
-           <div class="card-hover justify-center flex relative">
-                
-                    <img src="./criadores/Carta.png" alt="">
-                
-                <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="./criadores/identificações/adm.png" alt="">
-                </div>
-                <div class="opacity-90 hover:opacity-100 transition-opacity w-[186px] h-[196px] absolute top-3">
-                <img src="./criadores/gui.png">
-                </div>
-                <div class="absolute top-6 right-4 space-y-3">
-                    <a href="https://www.instagram.com/021.ggzin?igsh=N3EzcXc4cjZkNXVo" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                            <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-oswald font-bold">GUILHERME</p>
-                </div>
-            </div>
-
-            <!-- Card 3 - Bryan -->
-           <div class="card-hover justify-center flex relative">
-                
-                    <img src="./criadores/Carta.png" alt="">
-                
-                <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="./criadores/identificações/programador.png" alt="">
-                </div>
-                <div class="opacity-90 hover:opacity-100 transition-opacity w-[186px] h-[196px] absolute top-3">
-                <img src="./criadores/bryan.png">
-                </div>
-                <div class="absolute top-6 right-4 space-y-3">
-                    <a href="#" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                            <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-regular font-bold">BRYAN</p>
-                </div>
-            </div>
-
-            <!-- Card 4 - Arthur -->
-            <div class="card-hover justify-center flex relative">
-                
-                    <img src="./criadores/Carta.png" alt="">
-                
-                <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="./criadores/identificações/telemarketing.png" alt="">
-                </div>
-                <div class="opacity-90 hover:opacity-100 transition-opacity w-[186px] h-[196px] absolute top-3">
-                <img src="./criadores/arthur.png">
-                </div>
-                <div class="absolute top-6 right-4 space-y-3">
-                    <a href="#" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                            <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-bold">ARTHUR</p>
-                </div>
-            </div>
-
-            <!-- Card 5 - Camila -->
-           <div class="card-hover justify-center flex relative">
-                
-                    <img src="./criadores/Carta.png" alt="">
-                
-                <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="./criadores/identificações/programador.png" alt="">
-                </div>
-                <div class="opacity-90 hover:opacity-100 transition-opacity w-[170px] h-[180px] absolute top-9">
-                <img src="./criadores/camila.png">
-                </div>
-                <div class="absolute top-6 right-4 space-y-3">
-                    <a href="https://www.instagram.com/cami.sillv?igsh=aHBnajQ1Y2hvNGFi" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                            <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-oswald font-bold">CAMILA</p>
-                </div>
-            </div>
-
-            <!-- Card 6 - Dahy -->
-            <div class="card-hover justify-center flex relative">
-                
-                    <img src="./criadores/Carta.png" alt="">
-                
-                <div class="absolute top-6 left-4 space-y-3">
-                    <img class=" w-8 h-8" src="./criadores/identificações/designer.png" alt="">
-                </div>
-                <div class="opacity-90 hover:opacity-100 transition-opacity w-[170px] h-[180px] absolute top-9">
-                <img src="./criadores/dafny.png">
-                </div>
-                <div class="absolute top-6 right-4 space-y-3">
-                    <a href="#" class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                            <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="absolute bottom-2 flex flex-col">
-                    <p class="text-white text-xl font-oswald font-bold">DAFNY</p>
-                </div>
-            </div>
-  </div>
-  
-
-  <style>
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-20px) scale(1.05);
-            box-shadow: 0 30px 60px rgba(139, 92, 246, 0.4);
-        }
-        
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: scale(1.2);
-            filter: brightness(1.5);
-        }
-        
-        .title-line {
-            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
-            height: 2px;
-        }
-    </style>
   </section>
 
-  </body>
-  
-  <br><br><br><br>
+ <section id="criadores" class="flex items-center justify-center px-4">
+    <div class="w-full max-w-7xl">
 
-  <footer class="w-full" >
-  <div class="relative flex items-center justify-center bg-[#2b2b2b] w-full h-[487px]" >
-    <div class="absolute items-center flex top-[91px] gap-[125px]">
-<img class="w-[180px] h-[90px]" src="./patrocinadores/loide_mono.png" alt="">
-<img class="w-[180px] h-[180px]" src="./patrocinadores/attackshark.png" alt="">
-<img class="w-[180px] h-[180px]" src="./patrocinadores/Nike.png" alt="">
+      <div class="flex flex-col items-center justify-center">
+      <div class="relative top-[50px] mt-[40px] md:mt-[90px] w-full md:w-[1080px] px-4 md:px-0 flex items-center justify-center relative">
+        <div class="w-full flex items-center">
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+          <hr class="flex-1 h-[4px] bg-[#9500f9] border-0" />
+          <div class="w-[4px] h-[12px] bg-[#9500f9] z-10 rounded-md"></div>
+        </div>
+        <h1
+          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] md:text-[50px] text-white z-10 font-oswald font-regular whitespace-nowrap px-2 md:px-0">
+          CRIADORES
+        </h1>
+      </div>
 </div>
-<div class="absolute top-[299px] flex items-center gap-[150px]">
-  <div class="font-quicksand font-regular text-white text-xs">
-  <p>© Copyright, T3rrifier, 2025 Todos os direitos reservados</p>
-</div>
-  <img class="w-[500px] h-[130px]" src="t3logo.png" alt="">
-<div>
-<p class="text-white text-2xl">
-  <strong>SIGA-NOS NO INSTAGRAM!</strong>
-</p><br>
-  <a class="flex items-center gap-[10px]" href="https://www.instagram.com/t3rrifiergg?igsh=MXNweThsdTNoNHF6ZA=="><img class="flex w-[36px] h-[36px]" src="insta.png" alt=""> <p class="font-quicksand text-white text-2xl">- @t3rrifiergg</p></a>
-</div>
+<div class="carousil-container">
+ <br><br><br><br><br>
+ 
+      <!-- Carrossel Mobile / Grid Desktop -->
+      <div class="md:grid md:grid-cols-2 xl:grid-cols-6 md:gap-6 flex md:flex-none gap-6 pb-4 md:pb-0">
+        <!-- Card 1 - Glaucio -->
+        <div class="carousil-item card-hover justify-center flex relative w-[200px] md:w-auto">
+          <img src="./criadores/Carta.png" alt="">
+          <div class="absolute top-6 left-4 space-y-3">
+            <img class="w-8 h-8" src="./criadores/identificações/adm.png" alt="">
+          </div>
+          <div class="opacity-90 hover:opacity-100 transition-opacity left-3 w-[186px] h-[196px] absolute top-3">
+            <img src="./criadores/glaucyo.png">
+          </div>
+          <div class="absolute top-6 right-4 space-y-3">
+            <a href="https://www.instagram.com/gabrielvianna12?igsh=dzl5amoyZW54dzBs&utm_source=qr"
+              class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+          </div>
+          <div class="absolute bottom-2 flex flex-col">
+            <p class="text-white text-xl font-oswald font-bold">GLAUCYO</p>
+          </div>
+        </div>
+
+        <!-- Card 2 - Guilherme -->
+        <div class="carousil-item card-hover justify-center flex relative w-[200px] md:w-auto">
+          <img src="./criadores/Carta.png" alt="">
+          <div class="absolute top-6 left-4 space-y-3">
+            <img class="w-8 h-8" src="./criadores/identificações/adm.png" alt="">
+          </div>
+          <div class="opacity-90 hover:opacity-100 transition-opacity w-[186px] h-[196px] absolute top-3">
+            <img src="./criadores/gui.png">
+          </div>
+          <div class="absolute top-6 right-4 space-y-3">
+            <a href="https://www.instagram.com/021.ggzin?igsh=N3EzcXc4cjZkNXVo"
+              class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+          </div>
+          <div class="absolute bottom-2 flex flex-col">
+            <p class="text-white text-xl font-oswald font-bold">GUILHERME</p>
+          </div>
+        </div>
+
+        <!-- Card 3 - Bryan -->
+        <div class="carousil-item card-hover justify-center flex relative w-[200px] md:w-auto">
+          <img src="./criadores/Carta.png" alt="">
+          <div class="absolute top-6 left-4 space-y-3">
+            <img class="w-8 h-8" src="./criadores/identificações/programador.png" alt="">
+          </div>
+          <div class="opacity-90 hover:opacity-100 transition-opacity w-[186px] h-[196px] absolute top-3">
+            <img src="./criadores/bryan.png">
+          </div>
+          <div class="absolute top-6 right-4 space-y-3">
+            <a href="#"
+              class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+          </div>
+          <div class="absolute bottom-2 flex flex-col">
+            <p class="text-white text-xl font-oswald font-bold">BRYAN</p>
+          </div>
+        </div>
+
+        <!-- Card 4 - Arthur -->
+        <div class="carousil-item card-hover justify-center flex relative w-[200px] md:w-auto">
+          <img src="./criadores/Carta.png" alt="">
+          <div class="absolute top-6 left-4 space-y-3">
+            <img class="w-8 h-8" src="./criadores/identificações/telemarketing.png" alt="">
+          </div>
+          <div class="opacity-90 hover:opacity-100 transition-opacity w-[186px] h-[196px] absolute top-3">
+            <img src="./criadores/arthur.png">
+          </div>
+          <div class="absolute top-6 right-4 space-y-3">
+            <a href="#"
+              class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+          </div>
+          <div class="absolute bottom-2 flex flex-col">
+            <p class="text-white text-xl font-bold">ARTHUR</p>
+          </div>
+        </div>
+
+        <!-- Card 5 - Camila -->
+        <div class="carousil-item card-hover justify-center flex relative w-[200px] md:w-auto">
+          <img src="./criadores/Carta.png" alt="">
+          <div class="absolute top-6 left-4 space-y-3">
+            <img class="w-8 h-8" src="./criadores/identificações/programador.png" alt="">
+          </div>
+          <div class="opacity-90 hover:opacity-100 transition-opacity w-[170px] h-[180px] absolute top-9">
+            <img src="./criadores/camila.png">
+          </div>
+          <div class="absolute top-6 right-4 space-y-3">
+            <a href="https://www.instagram.com/cami.sillv?igsh=aHBnajQ1Y2hvNGFi"
+              class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+          </div>
+          <div class="absolute bottom-2 flex flex-col">
+            <p class="text-white text-xl font-oswald font-bold">CAMILA</p>
+          </div>
+        </div>
+
+        <!-- Card 6 - Dafny -->
+        <div class="carousil-item card-hover justify-center flex relative w-[200px] md:w-auto">
+          <img src="./criadores/Carta.png" alt="">
+          <div class="absolute top-6 left-4 space-y-3">
+            <img class="w-8 h-8" src="./criadores/identificações/designer.png" alt="">
+          </div>
+          <div class="opacity-90 hover:opacity-100 transition-opacity w-[170px] h-[180px] absolute top-9">
+            <img src="./criadores/dafny.png">
+          </div>
+          <div class="absolute top-6 right-4 space-y-3">
+            <a href="#"
+              class="social-icon block w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+          </div>
+          <div class="absolute bottom-2 flex flex-col">
+            <p class="text-white text-xl font-oswald font-bold">DAFNY</p>
+          </div>
+        </div>
+      </div>
+      </div>
+  
+
+  <script>
+    // Funcionalidade do carrossel mobile
+    const carousil = document.querySelector('.carousil-container');
+    const dotsContainer = document.getElementById('carousilDots');
+    const items = document.querySelectorAll('.carousil-item');
+    
+    // Criar indicadores
+    items.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('carousil-dot');
+      if (index === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    });
+    
+    const dots = document.querySelectorAll('.carousil-dot');
+    
+    // Atualizar indicadores ao rolar
+    carousil.addEventListener('scroll', () => {
+      const scrollPosition = carousil.scrollLeft;
+      const itemWidth = items[0].offsetWidth + 24; // largura + gap
+      const activeIndex = Math.round(scrollPosition / itemWidth);
+      
+      dots.forEach((dot, index) => {
+        if (index === activeIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+      
+
+<style>
+        .card-hover {
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-hover:hover {
+          transform: translateY(-20px) scale(1.05);
+         
+        }
+
+        .social-icon {
+          transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+          transform: scale(1.2);
+          filter: brightness(1.5);
+        }
+
+        .title-line {
+          background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+          height: 2px;
+        }
+        /* Carrossel Mobile */
+    .carousil-container {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    
+    .carousil-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .carousil-item {
+      scroll-snap-align: center;
+      flex-shrink: 0;
+    }
+
+    /* Indicadores do carrossel */
+    .carousil-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .carousil-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .carousil-dot.active {
+      background: #9500f9;
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* Grid desktop */
+    @media (min-width: 768px) {
+      .carousil-container {
+        overflow-x: visible;
+        scroll-snap-type: none;
+      }
+      
+      .carousil-dots {
+        display: none;
+      }
+    }
+      </style>
+      
+  </section>
+
+</body>
+
+<br><br><br><br>
+
+<footer class="w-full">
+  <div class="w-full relative flex items-center justify-center bg-[#2b2b2b] md:w-full h-[487px]">
+    <div class="absolute items-center flex top-[91px] gap-[40px] md:gap-[125px]">
+      <img class="w-[100px] h-[50px] md:w-[180px] md:h-[90px]" src="./patrocinadores/loide_mono.png" alt="">
+      <img class="w-[100px] h-[100px] md:w-[180px] md:h-[180px]" src="./patrocinadores/attackshark.png" alt="">
+      <img class="w-[100px] h-[100px] md:w-[180px] md:h-[180px]" src="./patrocinadores/Nike.png" alt="">
+    </div>
+    <div class="hidden md:block md:absolute md:top-[299px] md:flex md:flex-row md:items-center md:gap-[150px]">
+      <div class="font-quicksand font-regular text-white text-xs">
+        <p>© Copyright, T3rrifier, 2025 Todos os direitos reservados</p>
+      </div>
+      <img class="w-[500px] h-[130px]" src="t3logo.png" alt="">
+      <div>
+        <p class="text-white text-2xl">
+          <strong>SIGA-NOS NO INSTAGRAM!</strong>
+        </p><br>
+        <a class="flex items-center gap-[10px]"
+          href="https://www.instagram.com/t3rrifiergg?igsh=MXNweThsdTNoNHF6ZA=="><img class="flex w-[36px] h-[36px]"
+            src="insta.png" alt="">
+          <p class="font-quicksand text-white text-2xl">- @t3rrifiergg</p>
+        </a>
+      </div>
+    </div>
+    
+      <img class=" w-[300px] h-[80px] block mt-[40px] md:hidden " src="t3logo.png" alt="">
+      <div class="block md:hidden absolute mt-[250px] flex items-center gap-[60px]">
+      <div class="font-quicksand ml-[20px] font-regular text-white text-xs">
+        <p>© Copyright, T3rrifier, 2025 Todos os direitos reservados</p>
+      </div>
+      <div>
+        <p class="text-white text-lg mt-[20px]">
+          <strong>SIGA-NOS NO INSTAGRAM!</strong>
+        </p><br>
+        <a class="flex items-center gap-[10px]"
+          href="https://www.instagram.com/t3rrifiergg?igsh=MXNweThsdTNoNHF6ZA=="><img class="flex w-[16px] h-[16px]"
+            src="insta.png" alt="">
+          <p class="font-quicksand text-white text-lg">- @t3rrifiergg</p>
+        </a>
+      </div>
+    </div>
   </div>
-</div>
 </footer>
+
 </html>
