@@ -1,39 +1,463 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Login Page</title>
-</head>
-<body class="bg-[#0f0f0f] flex flex-col"><br><br><br>
-    <div class="flex flex-col items-center gap-[116px] justify-center">
-<h1 class="text-5xl text-white font-oswald">FACA SEU LOGIN</h1>
-<div class="relative flex-col justify-center">
-  <div class="flex flex-col items-center justify-center gap-[45px]">
-  <input placeholder="Nome de usuario" class="w-[510px] border-[2px] focus:outline-none border-[#ffffff] pl-[20px] pla placeholder-opacity-60 placeholder-[#ffffff] font-barlow text-white text-xl h-[80px] bg-[#0f0f0f] rounded-xl flex" type="text">
-  <input placeholder="Insira seu email" class="w-[510px] border-[2px] focus:outline-none border-[#ffffff] pl-[20px] placeholder-opacity-60 placeholder-[#ffffff] font-barlow text-white text-xl h-[80px] bg-[#0f0f0f] rounded-xl flex" type="text">
-  <input id="senha" placeholder="Insira uma senha" class="w-[510px] border-[2px] focus:outline-none border-[#ffffff] pl-[20px] placeholder-opacity-60 placeholder-[#ffffff] font-barlow text-white text-xl h-[80px] bg-[#0f0f0f] rounded-xl flex" type="password">
-  <button type="button" id="toggle"
-          class="absolute right-3 top-[292px] -translate-y-1/2 text-gray-500 hover:text-purple-600">
-    <img id="eye" class="w-[25px] h-[25px] cursor-pointer transition-transform duration-300 hover:scale-105" src="inputeye.png" alt="">
-  </button>
-   <a href="t3.html" class="flex justify-center items-center w-[237px] rounded-xl h-[70px] font-barlow text-3xl text-white bg-[#9500f9]" href="">Corfirmar</a>
-  </div>
-  </div>
-  <div class="fixed flex justify-center items-center bottom-0 left-0 w-full bg-[#2b2b2b] w-full w-[1920px] h-[157px]">
-  
-      <img class="w-[410px] h-[110px]" src="t3logo.png" alt="">
-    
-  </div>
-</div>
-<script>
-  const input = document.getElementById('senha')
-  const toggle = document.getElementById('toggle')
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=chevron_right"
+    />
+    <title>Login Page</title>
+    <style>
+      @font-face {
+        font-family: "Oswald";
+        src: url("./fontes/Oswald-Regular.ttf") format("truetype");
+        font-style: 400;
+      }
 
-  toggle.addEventListener('click', () => {
-    input.type = input.type === 'password' ? 'text' : 'password'
-  })
-</script>
-</body>
+      @font-face {
+        font-family: "Oswald";
+        src: url("./fontes/Oswald-Bold.ttf") format("truetype");
+        font-style: 700;
+      }
+
+      @font-face {
+        font-family: "Anton";
+        src: url("./fontes/Anton.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Quicksand";
+        src: url("./fontes/Quicksand-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Quicksand";
+        src: url("./fontes/Quicksand-Bold.ttf") format("truetype");
+        font-weight: 700;
+      }
+
+      @font-face {
+        font-family: "Cormorant-Garamond";
+        src: url("./fontes/Cormorant-Garamond.txt") format("truetype");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Barlow";
+        src: url("./fontes/Barlow.ttf") format("truetype");
+        font-weight: 400;
+      }
+
+      body {
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(149, 0, 249, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(149, 0, 249, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+      }
+
+      .btn-gradient {
+        background: linear-gradient(135deg, #9500f9 0%, #b040ff 100%);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .btn-gradient::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
+
+      .btn-gradient:hover::before {
+        left: 100%;
+      }
+
+      .btn-gradient:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(149, 0, 249, 0.5);
+      }
+
+      .title-glow {
+        text-shadow: 0 0 30px rgba(149, 0, 249, 0.5),
+                     0 0 60px rgba(149, 0, 249, 0.3);
+        letter-spacing: 2px;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+
+      .floating {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .input-wrapper {
+        position: relative;
+      }
+
+      .input-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9500f9;
+        font-size: 20px;
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        z-index: 10;
+      }
+
+      .glow-effect {
+        padding-left: 55px !important;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .overlay.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .login-modal {
+        background: white;
+        border-radius: 16px;
+        padding: 48px 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: slideIn 0.4s ease;
+        position: relative;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: #666;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      .close-btn:hover {
+        background: #f1f3f4;
+        color: #333;
+      }
+
+      .logo {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 24px;
+        background: linear-gradient(135deg, #afafaf 0%, #9500f9 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        color: white;
+        font-weight: bold;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-bottom: 8px;
+        font-weight: 400;
+      }
+
+      .subtitle {
+        color: #5f6368;
+        font-size: 16px;
+        margin-bottom: 32px;
+      }
+
+      .email-display {
+        background: #f1f3f4;
+        border: 1px solid #dadce0;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .email-icon {
+        background: linear-gradient(135deg, #afafaf 0%, #9500f9 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      .email-text {
+        flex: 1;
+        text-align: left;
+      }
+
+      .email-address {
+        color: #202124;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .input-group {
+        margin-bottom: 24px;
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        color: #5f6368;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 14px;
+        background: #9500f9;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .password-toggle {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 0.6;
+      }
+
+      .password-toggle:hover {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      @media (max-width: 768px) {
+        .title-glow {
+          font-size: 2rem;
+        }
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+            },
+            fontFamily: {
+              anton: ["Anton", "sans-serif"],
+              oswald: ["Oswald", "sans-serif"],
+              quicksand: ["Quicksand", "sans-serif"],
+              cormorant: ["Cormorant-Garamond", "serif"],
+              barlow: ["Barlow", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="flex flex-col">
+    <div class="flex flex-col items-center gap-[90px] md:gap-[116px] justify-center min-h-screen py-12 relative z-10">
+      <h1 class="text-5xl md:text-6xl text-white font-oswald title-glow floating">CRIE SUA CONTA</h1>
+      
+      <div class="relative flex-col justify-center">
+        <div class="flex flex-col items-center justify-center gap-[45px] md:gap-[45px]">
+          
+          <div class="input-wrapper md:w-[510px] w-[360px]">
+            <span class="input-icon">👤</span>
+            <input
+              placeholder="Nome de usuário"
+              class="w-full glow-effect border-[1px] focus:outline-none border-[#ffffff] border-opacity-30 placeholder-opacity-60 placeholder-[#ffffff] text-white text-xl md:h-[80px] h-[70px] bg-[#0f0f0f] bg-opacity-50 backdrop-blur-sm md:rounded-2xl rounded-2xl"
+              type="text"
+            />
+          </div>
+
+          <div class="input-wrapper md:w-[510px] w-[360px]">
+            <span class="input-icon">✉️</span>
+            <input
+              placeholder="Insira seu email"
+              class="w-full glow-effect border-[1px] focus:outline-none border-[#ffffff] border-opacity-30 placeholder-opacity-60 placeholder-[#ffffff] text-white text-xl md:h-[80px] h-[70px] bg-[#0f0f0f] bg-opacity-50 backdrop-blur-sm md:rounded-2xl rounded-2xl"
+              type="email"
+            />
+          </div>
+
+          <div class="input-wrapper md:w-[510px] w-[360px]">
+            <span class="input-icon">🔒</span>
+            <input
+              id="senho"
+              placeholder="Insira uma senha"
+              class="w-full glow-effect border-[1px] focus:outline-none border-[#ffffff] border-opacity-30 placeholder-opacity-60 placeholder-[#ffffff] text-white text-xl md:h-[80px] h-[70px] bg-[#0f0f0f] bg-opacity-50 backdrop-blur-sm md:rounded-2xl rounded-2xl pr-[60px]"
+              type="password"
+            />
+            <button
+              type="button"
+              id="toghle"
+              class="password-toggle text-gray-400 hover:text-purple-400"
+            >
+              <svg id="eye" xmlns="http://www.w3.org/2000/svg" class="md:w-[25px] md:h-[25px] w-[20px] h-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </button>
+          </div>
+
+          <a
+            href="index.html"
+            class="flex justify-center items-center md:w-[237px] w-[185px] rounded-2xl md:h-[70px] h-[60px] font-barlow md:text-3xl text-2xl text-white btn-gradient shadow-lg"
+          >
+            Confirmar
+          </a>
+        </div>
+      </div>
+
+      <div class="absolute flex md:bottom-12 bottom-8">
+        <a href="#" id="loginTrigger" class="text-sm text-white underline hover:text-[#b040ff] transition-all duration-300">
+          Já tem uma conta? Entrar
+        </a>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay">
+      <div class="login-modal md:max-w-[450px] w-full max-w-[350px]">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        
+        <div class="logo">J</div>
+        
+        <h2>Bem-vindo de volta</h2>
+        <p class="subtitle">Faça login para continuar</p>
+        
+        <a href="index.html" id="loginLink" class="md:w-[370px] w-[280px] email-display">
+          <div class="md:w-[40px] md:h-[40px] w-[30px] h-[30px] email-icon">J</div>
+          <div class="email-text">
+            <div class="email-address">joelson.liquid@seilamail.com.br</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const input = document.getElementById('senho');
+      const toggle = document.getElementById('toghle');
+
+      toggle.addEventListener("click", () => {
+        input.type = input.type === "password" ? "text" : "password";
+      });
+    </script>
+    <script>
+      const loginTrigger = document.getElementById('loginTrigger');
+      const overlay = document.getElementById('overlay');
+      const closeBtn = document.getElementById('closeBtn');
+      const loginBtn = document.querySelector('.login-btn');
+
+      loginTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        overlay.classList.add('active');
+      });
+
+      closeBtn.addEventListener('click', () => {
+        overlay.classList.remove('active');
+      });
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+        }
+      });
+
+      if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+          alert('Login realizado com sucesso!');
+          overlay.classList.remove('active');
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+          overlay.classList.remove('active');
+        }
+      });
+    </script>
+  </body>
 </html>

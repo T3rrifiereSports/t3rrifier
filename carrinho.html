@@ -1,71 +1,284 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Carrinho de Compras</title>
-</head>
-<body class="bg-[#0f0f0f] flex flex-col items-center justify-center min-h-screen text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
 
-  <div class="bg-[#0f0f0f] border-[#3b3b3b] border-2 p-6 rounded-2xl w-96 text-center">
-    <h2 class="font-semibold text-xl mb-4">🛒 Seu Carrinho</h2>
-
-    <ul id="cartItems" class="text-gray-300 text-sm mb-4 space-y-2">
-      <li class="text-gray-500 italic">Carregando...</li>
-    </ul>
-
-    <p class="font-semibold text-[#ffffff] mb-4">Total: R$ <span id="cartTotal"> 0,00</span></p>
-
-    <button id="clearCart" class="bg-purple-700 px-4 py-2 rounded-xl font-semibold">Esvaziar Carrinho</button>
-    <a href="t3.html" class="block mt-4 text-[#3b3b3b] underline hover:text-purple-500">← Voltar à loja</a>
-  </div>
-
-  <script>
-    const cartItemsList = document.getElementById('cartItems');
-    const cartTotalEl = document.getElementById('cartTotal');
-    const clearCartBtn = document.getElementById('clearCart');
-
-    // Carregar carrinho
-    function renderCart() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cartItemsList.innerHTML = "";
-
-      if (cart.length === 0) {
-        cartItemsList.innerHTML = '<li class="text-gray-500 italic">Carrinho vazio...</li>';
-      } else {
-        cart.forEach((item, index) => {
-          const li = document.createElement('li');
-          li.innerHTML = `
-            ${item.name} - <span class="text-purple-600">${item.color}</span> 
-            <span class="text-gray-400">R$ ${item.price.toFixed(2)}</span>
-            <button onclick="removeItem(${index})" class="ml-2 text-red-400 hover:text-red-300">✖</button>
-          `;
-          cartItemsList.appendChild(li);
-        });
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=chevron_right"
+    />
+    <title>Carrinho de Compras</title>
+    <style>
+      @font-face {
+        font-family: "Oswald";
+        src: url("./fontes/Oswald-Regular.ttf") format("truetype");
+        font-style: 400;
       }
 
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      cartTotalEl.textContent = total.toFixed(2);
-    }
+      @font-face {
+        font-family: "Oswald";
+        src: url("./fontes/Oswald-Bold.ttf") format("truetype");
+        font-style: 700;
+      }
 
-    // Remover item individual
-    function removeItem(index) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
+      @font-face {
+        font-family: "Anton";
+        src: url("./fontes/Anton.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Quicksand";
+        src: url("./fontes/Quicksand-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Quicksand";
+        src: url("./fontes/Quicksand-Bold.ttf") format("truetype");
+        font-weight: 700;
+      }
+
+      @font-face {
+        font-family: "Cormorant-Garamond";
+        src: url("./fontes/Cormorant-Garamond.txt") format("truetype");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Barlow";
+        src: url("./fontes/Barlow.ttf") format("truetype");
+        font-weight: 400;
+      }
+
+      body {
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+      }
+
+      body::before {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(149, 0, 249, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(149, 0, 249, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+            },
+            fontFamily: {
+              anton: ["Anton", "sans-serif"],
+              oswald: ["Oswald", "sans-serif"],
+              quicksand: ["Quicksand", "sans-serif"],
+              cormorant: ["Cormorant-Garamond", "serif"],
+              barlow: ["Barlow", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="flex flex-col items-center justify-center min-h-screen text-white"
+  >
+    <div
+      class="bg-[#0f0f0f] border-[#3b3b3b] border-2 p-6 rounded-2xl md:w-[500px] w-[340px] text-center"
+    >
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-semibold text-xl">🛒 Seu Carrinho</h2>
+        <span id="itemCount" class="bg-purple-700 text-white px-3 py-1 rounded-full text-sm font-bold hidden">
+          0 itens
+        </span>
+      </div>
+
+      <ul id="cartItems" class="text-gray-300 text-sm mb-4 space-y-3 max-h-[400px] overflow-y-auto">
+        <li class="text-gray-500 italic">Carregando...</li>
+      </ul>
+
+      <div id="cartSummary" class="hidden">
+        <div class="border-t border-[#3b3b3b] pt-4 mb-4">
+          <div class="flex justify-between items-center text-lg">
+            <span class="font-semibold text-[#ffffff]">Total:</span>
+            <span class="font-bold text-purple-400 text-xl">
+              R$ <span id="cartTotal">0,00</span>
+            </span>
+          </div>
+        </div>
+
+        <button
+          id="clearCart"
+          class="w-full bg-purple-700 hover:bg-purple-800 px-4 py-3 rounded-xl font-semibold transition-all mb-3"
+        >
+          Esvaziar Carrinho
+        </button>
+
+        <a href="checkout.html"
+          class="block w-full bg-green-600 hover:bg-green-700 px-4 py-3 rounded-xl font-semibold transition-all text-center"
+        >
+          Finalizar Compra
+        </a>
+      </div>
+
+      <a
+        href="index.html#products"
+        class="block mt-4 text-[#3b3b3b] underline hover:text-purple-500"
+        >← Voltar à loja</a
+      >
+    </div>
+
+    <script>
+      const cartItemsList = document.getElementById("cartItems");
+      const cartTotalEl = document.getElementById("cartTotal");
+      const clearCartBtn = document.getElementById("clearCart");
+      const itemCountEl = document.getElementById("itemCount");
+      const cartSummaryEl = document.getElementById("cartSummary");
+
+      // Carregar carrinho com agrupamento
+      function renderCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        
+        // Agrupar itens idênticos (mesmo nome, cor e tamanho)
+        const groupedCart = cart.reduce((acc, item) => {
+          const key = `${item.name}-${item.color}-${item.size || '?'}`;
+          if (acc[key]) {
+            acc[key].quantity += 1;
+          } else {
+            acc[key] = { ...item, size: item.size || '?', quantity: 1 };
+          }
+          return acc;
+        }, {});
+
+        const cartArray = Object.values(groupedCart);
+        cartItemsList.innerHTML = "";
+
+        if (cartArray.length === 0) {
+          cartItemsList.innerHTML =
+            '<li class="text-gray-500 italic py-8">Carrinho vazio...</li>';
+          itemCountEl.classList.add('hidden');
+          cartSummaryEl.classList.add('hidden');
+        } else {
+          const totalItems = cartArray.reduce((sum, item) => sum + item.quantity, 0);
+          itemCountEl.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'itens'}`;
+          itemCountEl.classList.remove('hidden');
+          cartSummaryEl.classList.remove('hidden');
+
+          cartArray.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.className = "bg-[#1a1a1a] p-4 rounded-xl border border-[#3b3b3b] text-left";
+            
+            const sizeColor = item.size === '?' ? 'text-yellow-400' : 'text-green-400';
+            const sizeLabel = item.size || '?';
+            
+            li.innerHTML = `
+              <div class="flex justify-between items-start mb-2">
+                <div class="flex-1">
+                  <p class="text-white font-semibold font-quicksand">${item.name}</p>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="text-purple-400 text-sm">Cor: ${item.color}</span>
+                    <span class="text-gray-500">•</span>
+                    <span class="${sizeColor} text-sm font-bold">Tamanho: ${sizeLabel}</span>
+                  </div>
+                  <p class="text-gray-400 text-sm mt-1">R$ ${item.price.toFixed(2)}</p>
+                </div>
+                <button onclick="removeItem('${item.name}', '${item.color}', '${item.size}')" 
+                        class="text-red-400 hover:text-red-300 transition-colors ml-2">
+                  ✖
+                </button>
+              </div>
+              
+              <div class="flex items-center justify-between mt-3">
+                <div class="flex items-center gap-2">
+                  <button onclick="updateQuantity('${item.name}', '${item.color}', '${item.size}', -1)"
+                          class="bg-[#2b2b2b] hover:bg-[#3b3b3b] text-white w-8 h-8 rounded-lg transition-colors">
+                    -
+                  </button>
+                  <span class="w-12 text-center font-semibold">${item.quantity}</span>
+                  <button onclick="updateQuantity('${item.name}', '${item.color}', '${item.size}', 1)"
+                          class="bg-[#2b2b2b] hover:bg-[#3b3b3b] text-white w-8 h-8 rounded-lg transition-colors">
+                    +
+                  </button>
+                </div>
+                <p class="text-white font-bold">
+                  R$ ${(item.price * item.quantity).toFixed(2)}
+                </p>
+              </div>
+            `;
+            cartItemsList.appendChild(li);
+          });
+        }
+
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        cartTotalEl.textContent = total.toFixed(2);
+      }
+
+      // Atualizar quantidade
+      function updateQuantity(name, color, size, change) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const sizeToMatch = size === '?' ? undefined : size;
+        
+        if (change > 0) {
+          // Adicionar mais um item
+          const itemTemplate = cart.find(item => 
+            item.name === name && 
+            item.color === color && 
+            (item.size || '?') === size
+          );
+          if (itemTemplate) {
+            cart.push({ ...itemTemplate });
+          }
+        } else {
+          // Remover um item
+          const index = cart.findIndex(item => 
+            item.name === name && 
+            item.color === color && 
+            (item.size || '?') === size
+          );
+          if (index !== -1) {
+            cart.splice(index, 1);
+          }
+        }
+        
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+
+      // Remover item completamente
+      function removeItem(name, color, size) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const filteredCart = cart.filter(item => 
+          !(item.name === name && 
+            item.color === color && 
+            (item.size || '?') === size)
+        );
+        localStorage.setItem("cart", JSON.stringify(filteredCart));
+        renderCart();
+      }
+
+      // Esvaziar carrinho
+      clearCartBtn.addEventListener("click", () => {
+        localStorage.removeItem("cart");
+        renderCart();
+      });
+
+      // Tornar funções globais
+      window.removeItem = removeItem;
+      window.updateQuantity = updateQuantity;
+      
       renderCart();
-    }
-
-    // Esvaziar carrinho
-    clearCartBtn.addEventListener('click', () => {
-      localStorage.removeItem('cart');
-      renderCart();
-    });
-
-    window.removeItem = removeItem;
-    renderCart();
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>

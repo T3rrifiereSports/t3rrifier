@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
+  <title>Caneca T3rrifier - Detalhes</title>
+
+  <style>
+    @font-face {
+      font-family: "Oswald";
+      src: url("./fontes/Oswald-Regular.ttf") format("truetype");
+      font-style: 400;
+    }
+    @font-face {
+      font-family: "Quicksand";
+      src: url("./fontes/Quicksand-Regular.ttf") format("truetype");
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: "Quicksand";
+      src: url("./fontes/Quicksand-Bold.ttf") format("truetype");
+      font-weight: 700;
+    }
+
+    body {
+      background: #0f0f0f;
+    }
+
+    .zoom-container {
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .zoom-image {
+      transition: transform 0.3s ease;
+    }
+
+    .zoom-container:hover .zoom-image {
+      transform: scale(1.5);
+    }
+
+    .thumbnail {
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .thumbnail:hover {
+      border-color: #9500f9;
+    }
+
+    .thumbnail.active {
+      border-color: #9500f9;
+      box-shadow: 0 0 15px rgba(149, 0, 249, 0.5);
+    }
+
+    .color-option {
+      border: 3px solid transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .color-option:hover {
+      border-color: rgba(149, 0, 249, 0.5);
+    }
+
+    .color-option.selected {
+      border-color: #9500f9;
+      box-shadow: 0 0 15px rgba(149, 0, 249, 0.5);
+    }
+
+    .notification {
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .badge-counter {
+      animation: bounce 0.5s ease;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            oswald: ["Oswald", "sans-serif"],
+            quicksand: ["Quicksand", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-[#0f0f0f] pt-20">
+  <!-- Header -->
+  <div class="fixed top-0 left-0 right-0 z-50 w-full bg-[#0f0f0f]">
+    <nav class="w-full md:max-w-[1080px] max-w-[430px] md:justify-between md:mx-auto h-20 flex items-center justify-between px-4 md:px-0">
+      <img class="w-[225px] hidden md:flex" src="t3logo.png" alt="" />
+      <img class="w-[175px] block md:hidden" src="t3logo.png" alt="" />
+      
+      <div class="flex space-x-5 items-center">
+        <a href="carrinho.html" class="relative">
+          <img class="w-[22px] h-[27px]" src="./imgheader/compra.svg" alt="" />
+          <span id="cartBadge" class="absolute -top-2 -right-2 bg-purple-700 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center hidden badge-counter">0</span>
+        </a>
+        <a href="loginpage.html"><img class="w-[30px] h-[30px]" src="./imgheader/person.svg" alt="" /></a>
+      </div>
+    </nav>
+    <hr class="h-[1px] border-[#2b2b2b]" />
+  </div>
+
+  <!-- Notification -->
+  <div id="notification" class="fixed top-24 right-4 bg-purple-700 text-white px-6 py-3 rounded-xl shadow-lg z-50 hidden notification">
+    Produto adicionado ao carrinho! 🎉
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-[1080px] mx-auto px-4 py-8 mt-12">
+    <a href="index.html#products" class="text-purple-400 hover:text-purple-300 mb-6 inline-block">← Voltar para produtos</a>
+    
+    <div class="grid md:grid-cols-2 gap-8 mt-6">
+      <!-- Gallery -->
+      <div>
+        <div class="zoom-container bg-[#1a1a1a] rounded-2xl p-8 mb-4 flex items-center justify-center h-[500px]">
+          <img id="mainImage" src="./produtos/canecaP.png" alt="Caneca" class="zoom-image w-full h-full object-contain">
+        </div>
+        
+        <div class="flex gap-4 justify-center">
+          <div class="thumbnail w-24 h-24 bg-[#1a1a1a] rounded-xl p-2 flex items-center justify-center" onclick="changeImage('./produtos/canecaB.png', this)">
+            <img src="./produtos/canecaB.png" alt="Branco" class="w-full h-full object-contain">
+          </div>
+          <div class="thumbnail active w-24 h-24 bg-[#1a1a1a] rounded-xl p-2 flex items-center justify-center" onclick="changeImage('./produtos/canecaP.png', this)">
+            <img src="./produtos/canecaP.png" alt="Preto" class="w-full h-full object-contain">
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="text-white">
+        <h1 class="text-4xl font-oswald font-bold mb-2">CANECA T3RRIFIER</h1>
+        <p class="text-purple-400 text-xl mb-6">Edição Oficial eSports</p>
+        
+        <div class="text-3xl font-bold mb-6">R$ 45,00</div>
+
+        <div class="mb-6">
+          <h3 class="text-lg font-quicksand font-bold mb-3">Descrição:</h3>
+          <p class="text-gray-300 font-quicksand leading-relaxed">
+            Caneca oficial da T3rrifier eSports com capacidade de 325ml. 
+            Produzida em cerâmica de alta qualidade com impressão em alta definição, 
+            resistente a lavagens e microondas. Design exclusivo com logo da equipe 
+            para os verdadeiros fãs levarem sua paixão para o dia a dia.
+          </p>
+        </div>
+
+        <!-- Color Selection -->
+        <div class="mb-6">
+          <h3 class="text-lg font-quicksand font-bold mb-3">Cor:</h3>
+          <div class="flex gap-4">
+            <div class="color-option w-12 h-12 rounded-full bg-white" data-color="Branco" data-image="./produtos/canecaB.png" onclick="selectColor(this)"></div>
+            <div class="color-option selected w-12 h-12 rounded-full bg-black" data-color="Preto" data-image="./produtos/canecaP.png" onclick="selectColor(this)"></div>
+          </div>
+          <p id="selectedColor" class="text-purple-400 mt-2 font-quicksand">Selecionado: Branco</p>
+        </div>
+
+        <!-- Specifications -->
+        <div class="mb-8 bg-[#1a1a1a] p-6 rounded-xl">
+          <h3 class="text-lg font-quicksand font-bold mb-4">📋 Especificações</h3>
+          <ul class="space-y-2 text-gray-300 font-quicksand">
+            <li>• Material: Cerâmica Chinesa</li>
+            <li>• Capacidade: 325ml</li>
+            <li>• Altura: 9,5cm</li>
+            <li>• Diâmetro: 8cm</li>
+            <li>• Impressão: Alta definição</li>
+            <li>• Resistente a microondas e lava-louças</li>
+          </ul>
+        </div>
+
+        <!-- Add to Cart -->
+        <button onclick="addToCart()" class="w-full bg-purple-700 hover:bg-purple-800 text-white py-4 rounded-xl font-quicksand font-bold text-lg transition-all">
+          ADICIONAR AO CARRINHO
+        </button>
+
+        <!-- Care Instructions -->
+        <div class="mt-6 bg-[#1a1a1a] p-6 rounded-xl">
+          <h3 class="text-lg font-quicksand font-bold mb-3">💡 Cuidados</h3>
+          <ul class="space-y-1 text-sm text-gray-300 font-quicksand">
+            <li>• Evite choques térmicos bruscos</li>
+            <li>• Não utilize esponjas abrasivas</li>
+            <li>• Pode ir ao microondas</li>
+            <li>• Seguro para lava-louças</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="mt-16">
+      <h2 class="text-3xl font-oswald font-bold text-white mb-8">AVALIAÇÕES</h2>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-[#1a1a1a] p-6 rounded-xl">
+          <div class="flex items-center mb-3">
+            <span class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</span>
+            <span class="ml-3 text-gray-400 font-quicksand">por Felipe Koreia</span>
+          </div>
+          <p class="text-gray-300 font-quicksand">
+            Caneca linda e de ótima qualidade! A impressão é perfeita e não desbota. 
+            Uso todo dia para tomar café enquanto jogo. Vale muito a pena!
+          </p>
+        </div>
+
+        <div class="bg-[#1a1a1a] p-6 rounded-xl">
+          <div class="flex items-center mb-3">
+            <span class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</span>
+            <span class="ml-3 text-gray-400 font-quicksand">por Ana Oliveira</span>
+          </div>
+          <p class="text-gray-300 font-quicksand">
+            Comprei a preta e adorei! O tamanho é perfeito e o material é resistente. 
+            Ótima para presentear também. Recomendo demais!
+          </p>
+        </div>
+
+        <div class="bg-[#1a1a1a] p-6 rounded-xl">
+          <div class="flex items-center mb-3">
+            <span class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</span>
+            <span class="ml-3 text-gray-400 font-quicksand">por Joelson Dias</span>
+          </div>
+          <p class="text-gray-300 font-quicksand">
+            Design incrível! Parece ainda melhor pessoalmente. A caneca tem um peso 
+            bom e o logo ficou perfeito. Produto top!
+          </p>
+        </div>
+
+        <div class="bg-[#1a1a1a] p-6 rounded-xl">
+          <div class="flex items-center mb-3">
+            <span class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</span>
+            <span class="ml-3 text-gray-400 font-quicksand">por Beatriz Santos</span>
+          </div>
+          <p class="text-gray-300 font-quicksand">
+            Excelente custo-benefício! Chegou bem embalada e rápido. 
+            Já virou minha caneca favorita. Super recomendo!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="mt-16 mb-12">
+      <h2 class="text-3xl font-oswald font-bold text-white mb-8">PRODUTOS RELACIONADOS</h2>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="paginademoletom.html" class="block">
+          <div class="bg-[#1a1a1a] rounded-xl p-6 text-center hover:bg-[#252525] transition-colors">
+            <img src="./produtos/moletomB.png" class="w-full h-48 object-contain mb-4" alt="Moletom">
+            <h3 class="text-white font-quicksand font-bold text-lg mb-2">Moletom T3rrifier</h3>
+            <p class="text-purple-400 font-quicksand font-bold text-xl">R$ 90,00</p>
+          </div>
+        </a>
+
+        <a href="paginadeuniforme.html" class="block">
+          <div class="bg-[#1a1a1a] rounded-xl p-6 text-center hover:bg-[#252525] transition-colors">
+            <img src="./produtos/camisa.png" class="w-full h-48 object-contain mb-4" alt="Camisa">
+            <h3 class="text-white font-quicksand font-bold text-lg mb-2">Camisa T3rrifier</h3>
+            <p class="text-purple-400 font-quicksand font-bold text-xl">R$ 75,00</p>
+          </div>
+        </a>
+
+        <div class="bg-[#1a1a1a] rounded-xl p-6 text-center">
+          <div class="w-full h-48 flex items-center justify-center mb-4">
+            <span class="text-6xl">🎮</span>
+          </div>
+          <h3 class="text-white font-quicksand font-bold text-lg mb-2">Acessórios</h3>
+          <p class="text-gray-400 font-quicksand text-sm">Em breve...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedColor = 'Branco';
+
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const badge = document.getElementById('cartBadge');
+      if (cart.length > 0) {
+        badge.textContent = cart.length;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    function changeImage(src, element) {
+      document.getElementById('mainImage').src = src;
+      document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    function selectColor(element) {
+      document.querySelectorAll('.color-option').forEach(c => c.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedColor = element.dataset.color;
+      document.getElementById('selectedColor').textContent = `Selecionado: ${selectedColor}`;
+      document.getElementById('mainImage').src = element.dataset.image;
+      
+      const thumbnails = document.querySelectorAll('.thumbnail');
+      thumbnails.forEach(t => t.classList.remove('active'));
+      const matchingThumb = Array.from(thumbnails).find(t => 
+        t.querySelector('img').src.includes(element.dataset.image)
+      );
+      if (matchingThumb) matchingThumb.classList.add('active');
+    }
+
+    function addToCart() {
+      const product = {
+        name: "Caneca T3rrifier",
+        color: selectedColor,
+        price: 45.00
+      };
+      
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      const notification = document.getElementById('notification');
+      notification.classList.remove('hidden');
+      setTimeout(() => {
+        notification.classList.add('hidden');
+      }, 3000);
+
+      updateCartBadge();
+    }
+
+    updateCartBadge();
+  </script>
+</body>
+</html>
